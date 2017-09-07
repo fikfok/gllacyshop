@@ -327,15 +327,29 @@ body {
 
 .authorize-btn {
     padding-left: 42px;
-    background-image: url("../img/icon_login_white.png");
     background-repeat: no-repeat;
     background-position: 16px 6px;
 }
 
 .authorize-btn:hover {
-    background-image: url("../img/icon_login_black.png");
     color: #000000;
     background-color: #ffffff;
+}
+
+.login-img {
+    background-image: url("../img/icon_login_white.png");
+}
+
+.login-img:hover {
+    background-image: url("../img/icon_login_black.png");
+}
+
+.logout-img {
+    background-image: url("../img/icon_logout_white.png");
+}
+
+.logout-img:hover {
+    background-image: url("../img/icon_logout_black.png");
 }
 
 .navigation-right-menu-authorize:hover > .authorize-form {
@@ -348,7 +362,7 @@ body {
     top: 36px;
     right: -2px;
     width: 277px;
-    height: 214px;
+    min-height: 214px;
     z-index: 1;
     background-color: #ffffff;
     padding: 20px;
@@ -361,7 +375,26 @@ body {
             box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
 }
 
-.text-authorize-email,
+.authorize-form-error {
+    border-width: 5px;
+    border-color: red;
+    border-style: solid;
+}
+
+.authorize-form-error-block {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.authorize-form-error-title {
+    font-size: 14px;
+    color: red;
+    line-height: 1.12em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.text-authorize-login,
 .authorize-password {
     width: 240px;
     margin-bottom: 20px;    

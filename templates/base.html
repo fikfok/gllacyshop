@@ -46,15 +46,17 @@
                             </div>
                         </form>
 
-                        <form class="navigation-right-menu-authorize" action="#" method="post">
-                            <a class="rounded-btn authorize-btn" href="#">Вход</a>
-                            <div class="authorize-form clearfix">
+                        <form class="navigation-right-menu-authorize" action="/user/login/" method="post">
+                            {% csrf_token %}
+                            {% if not user.is_authenticated %}
+                            <a class="rounded-btn authorize-btn login-img" href="#">Вход</a>
+                            <div class="authorize-form clearfix {% if authorizeError %}authorize-form-error{% endif %}">
                                 <div class="txt-box-container">
-                                    <input class="txt-box text-authorize-email" type="text" name="authorize-email" placeholder="Электронная почта" required>
-                                    <span class="txt-box-lable">Электронная почта</span>
+                                    <input class="txt-box text-authorize-login" type="text" name="login" placeholder="Логин" required>
+                                    <span class="txt-box-lable">Логин</span>
                                 </div>
                                 <div class="txt-box-container">
-                                    <input class="txt-box authorize-password" type="password" name="authorize-password" placeholder="Пароль" required>
+                                    <input class="txt-box authorize-password" type="password" name="password" placeholder="Пароль" required>
                                     <span class="txt-box-lable">Пароль</span>
                                 </div>
                                 <button class="red-btn authorize-login-btn" type="submit" name="authorize-login-btn">Войти</button>
@@ -62,7 +64,15 @@
                                     <a class="help-login-link" href="#">Забыли пароль?</a>
                                     <a class="help-login-link" href="#">Новая регистрация</a>
                                 </div>
+                                {% if authorizeError %}
+                                <div class="authorize-form-error-block">
+                                    <p class="authorize-form-error-title">Введены неверные логин/пароль</p>
+                                </div>
+                                {% endif %}
                             </div>
+                            {% else %}
+                            <a class="rounded-btn authorize-btn logout-img" href="/user/logout/">Выход</a>
+                            {% endif %}
                         </form>
 
                         <div class="navigation-right-menu-cart">
