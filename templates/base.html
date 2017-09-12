@@ -32,6 +32,17 @@
                             </li>
                             <li><a class="main-menu-btn" href="#">Доставка и оплата</a></li>
                             <li><a class="main-menu-btn" href="#">О Компании</a></li>
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a class="main-menu-btn" href="#">Панель управления</a>
+                                <ul class="main-sub-menu">
+                                    <li><a class="main-sub-menu-item" href="#">Заказы</a></li>
+                                    <li><a class="main-sub-menu-item" href="#">Пользователи</a></li>
+                                    <li><a class="main-sub-menu-item" href="#">Товары</a></li>
+                                    <li><a class="main-sub-menu-item" href="#">Отзывы</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
                         </ul>
                     </section>
 
@@ -46,34 +57,7 @@
                             </div>
                         </form>
 
-                        <form class="navigation-right-menu-authorize" action="/user/login/" method="post">
-                            {% csrf_token %}
-                            {% if not user.is_authenticated %}
-                            <a class="rounded-btn authorize-btn login-img" href="#">Вход</a>
-                            <div class="authorize-form clearfix {% if authorizeError %}authorize-form-error{% endif %}">
-                                <div class="txt-box-container">
-                                    <input class="txt-box text-authorize-login" type="text" name="login" placeholder="Логин" required>
-                                    <span class="txt-box-lable">Логин</span>
-                                </div>
-                                <div class="txt-box-container">
-                                    <input class="txt-box authorize-password" type="password" name="password" placeholder="Пароль" required>
-                                    <span class="txt-box-lable">Пароль</span>
-                                </div>
-                                <button class="red-btn authorize-login-btn" type="submit" name="authorize-login-btn">Войти</button>
-                                <div class="help-login">
-                                    <a class="help-login-link" href="#">Забыли пароль?</a>
-                                    <a class="help-login-link" href="#">Новая регистрация</a>
-                                </div>
-                                {% if authorizeError %}
-                                <div class="authorize-form-error-block">
-                                    <p class="authorize-form-error-title">Введены неверные логин/пароль</p>
-                                </div>
-                                {% endif %}
-                            </div>
-                            {% else %}
-                            <a class="rounded-btn authorize-btn logout-img" href="/user/logout/">Выход</a>
-                            {% endif %}
-                        </form>
+                        {% include "inc_authrorize.html" %}
 
                         <div class="navigation-right-menu-cart">
                             <a class="rounded-btn cart-btn">Пусто</a>
@@ -124,6 +108,7 @@
             </div>
         </footer>
 
+        <script src="{% static "js/utils.js" %}"></script>
         <script src="{% static "js/script.js" %}"></script>
     </body>
 </html>

@@ -154,7 +154,8 @@ body {
     display: none;
 }
 
-.navigation-left-menu > li:first-child {
+.navigation-left-menu > li:first-child,
+.navigation-left-menu > li:nth-child(4) {
     position: relative;
     padding-bottom: 7px;
 }
@@ -352,13 +353,12 @@ body {
     background-image: url("../img/icon_logout_black.png");
 }
 
-.navigation-right-menu-authorize:hover > .authorize-form {
-    display: block;
-}
+/*.navigation-right-menu-authorize:hover > .authorize-form {*/
+    /*display: block;*/
+/*}*/
 
 .authorize-form {
     position: absolute;
-    display: none;
     top: 36px;
     right: -2px;
     width: 277px;
