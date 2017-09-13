@@ -169,7 +169,7 @@ body {
     position: absolute;
     z-index: 1;
     min-width: 143px;
-    min-height: 171px;
+    min-height: 10px;
     top: 37px;
     left: -7px;
     padding-top: 0px;
@@ -191,13 +191,12 @@ body {
 
 .main-sub-menu li:first-child {
     position: relative;
-    min-height: 44px;
     padding-top: 6px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-.main-sub-menu li:first-child::after {
+.special-link::after {
     position: absolute;
     content: "";
     display: block;
@@ -233,9 +232,12 @@ body {
     background-color: #d07058;
 }
 
-
-.main-sub-menu li:first-child .main-sub-menu-item {
+.special-link {
     font-weight: bold;
+}
+
+.special-item {
+    height: 44px;
 }
 
 .main-sub-menu-item:hover {

@@ -23,7 +23,7 @@
                             <li>
                                 <a class="main-menu-btn" href="#">Каталог</a>
                                 <ul class="main-sub-menu">
-                                    <li><a class="main-sub-menu-item" href="#">Новинки</a></li>
+                                    <li class="special-item"><a class="main-sub-menu-item special-link" href="#">Новинки</a></li>
                                     <li><a class="main-sub-menu-item" href="catalog.html">Сливочное</a></li>
                                     <li><a class="main-sub-menu-item" href="#">Щербеты</a></li>
                                     <li><a class="main-sub-menu-item" href="#">Фруктовый лед</a></li>
@@ -32,14 +32,22 @@
                             </li>
                             <li><a class="main-menu-btn" href="#">Доставка и оплата</a></li>
                             <li><a class="main-menu-btn" href="#">О Компании</a></li>
-                            {% if user.is_authenticated %}
+                            {% if user.is_staff %}
                             <li>
                                 <a class="main-menu-btn" href="#">Панель управления</a>
                                 <ul class="main-sub-menu">
                                     <li><a class="main-sub-menu-item" href="#">Заказы</a></li>
-                                    <li><a class="main-sub-menu-item" href="#">Пользователи</a></li>
+                                    <li><a class="main-sub-menu-item" href="/admin/users/">Пользователи</a></li>
                                     <li><a class="main-sub-menu-item" href="#">Товары</a></li>
                                     <li><a class="main-sub-menu-item" href="#">Отзывы</a></li>
+                                </ul>
+                            </li>
+                            {% elif user.is_authenticated %}
+                            <li>
+                                <a class="main-menu-btn" href="#">Пользователь: {{ user.username }}</a>
+                                <ul class="main-sub-menu">
+                                    <li><a class="main-sub-menu-item" href="#">Мои заказы</a></li>
+                                    <li><a class="main-sub-menu-item" href="#">Личный кабинет</a></li>
                                 </ul>
                             </li>
                             {% endif %}
