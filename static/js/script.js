@@ -18,6 +18,11 @@ window.main = (function () {
 
   var utils = window.utils;
 
+  var SERVER_URL = 'admin/users';
+  var TIMEOUT = 15000;
+  var RESPONSE_TYPE = 'json';
+
+
   /**
    * Открываю окно обратной связи
    * @return {function} - функция, которую надо выполнить
@@ -113,6 +118,22 @@ window.main = (function () {
   });
 
   authorizeForm.addEventListener('mouseenter', utils.eventHandler(openAuthDialog));
-
+  authorizeForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    console.log('submit');
+    window.backend.ajax(
+        'GET',
+        RESPONSE_TYPE,
+        SERVER_URL,
+        TIMEOUT,
+        function() {
+          console.log('OK')
+        },
+        function() {
+          console.log('ERROR')
+        },
+        null
+    );
+  });
 
 })();

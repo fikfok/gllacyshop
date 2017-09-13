@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
-from django.http import Http404
+from django.http import Http404, JsonResponse
 
 def login(request):
     if request.method == 'POST':
@@ -20,4 +20,4 @@ def logout(request):
     return HttpResponseRedirect("/")
 
 def admin_users(request):
-    pass
+    print('qweqwe')

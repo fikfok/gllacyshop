@@ -23,8 +23,8 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^admin/users/$', adm.admin_users, name="admin_users"),
     url(r'^$', hm.home, name='home'),
+    url(r'^admin/users/$', adm.admin_users, name="admin_users"),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
 ]
