@@ -355,21 +355,17 @@ body {
     background-image: url("../img/icon_logout_black.png");
 }
 
-/*.navigation-right-menu-authorize:hover > .authorize-form {*/
-    /*display: block;*/
-/*}*/
-
 .authorize-form {
     position: absolute;
     top: 36px;
     right: -2px;
-    width: 277px;
-    min-height: 214px;
+    width: 240px;
+    min-height: 150px;
     z-index: 1;
     background-color: #ffffff;
     padding: 20px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    /*-webkit-box-sizing: border-box;*/
+            /*box-sizing: border-box;*/
     border-radius: 6px;
     background-color: #f8f7f4;
     color: #323232;
@@ -378,6 +374,8 @@ body {
 }
 
 .authorize-form-error {
+    top: 31px;
+    right: -7px;
     border-width: 5px;
     border-color: red;
     border-style: solid;

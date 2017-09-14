@@ -1,12 +1,12 @@
 <form class="navigation-right-menu-authorize {% if user.is_authenticated %}user_is_authenticated{% endif %}">
     {% csrf_token %}
     {% if not user.is_authenticated %}
-    <a class="rounded-btn authorize-btn login-img" href="#">Вход</a>
+    <a class="rounded-btn authorize-btn login-img">Вход</a>
     {% else %}
-    <a class="rounded-btn authorize-btn logout-img" href="/user/logout/">Выход</a>
+    <a class="rounded-btn authorize-btn logout-img logout-btn" href="/user/logout/">Выход</a>
     {% endif %}
 
-    <div class="authorize-form hideme clearfix {% if authorizeError %}authorize-form-error{% endif %}">
+    <div class="authorize-form hideme clearfix">
         <div class="txt-box-container">
             <input class="txt-box text-authorize-login" type="text" name="login" placeholder="Логин" required>
             <span class="txt-box-lable">Логин</span>
@@ -20,10 +20,8 @@
             <a class="help-login-link" href="#">Забыли пароль?</a>
             <a class="help-login-link" href="#">Новая регистрация</a>
         </div>
-        {% if authorizeError %}
-        <div class="authorize-form-error-block">
+        <div class="authorize-form-error-block hideme">
             <p class="authorize-form-error-title">Введены неверные логин/пароль</p>
         </div>
-        {% endif %}
     </div>
 </form>

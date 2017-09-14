@@ -65,8 +65,9 @@ window.backend = (function () {
 
     xhr.responseType = responseType;
     xhr.timeout = timeout;
-
     xhr.open(method, URL);
+
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     xhr.addEventListener('readystatechange', function () {
       if (xhr.readyState === 4) {
@@ -126,7 +127,7 @@ window.backend = (function () {
     }
   };
 
-  errorMessageNode = createRequestErrorBlock();
+  // errorMessageNode = createRequestErrorBlock();
 
   return {
     load: load,

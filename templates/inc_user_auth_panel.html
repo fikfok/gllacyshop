@@ -1,0 +1,15 @@
+{% if user.is_staff %}
+    <a class="main-menu-btn" href="#">Панель управления</a>
+    <ul class="main-sub-menu">
+        <li><a class="main-sub-menu-item" href="#">Заказы</a></li>
+        <li><a class="main-sub-menu-item" href="/admin/users/">Пользователи</a></li>
+        <li><a class="main-sub-menu-item" href="/admin/products/">Товары</a></li>
+        <li><a class="main-sub-menu-item" href="#">Отзывы</a></li>
+    </ul>
+{% elif user.is_authenticated %}
+    <a class="main-menu-btn" href="#">Пользователь: {{ user.username }}</a>
+    <ul class="main-sub-menu">
+        <li><a class="main-sub-menu-item" href="#">Мои заказы</a></li>
+        <li><a class="main-sub-menu-item" href="#">Личный кабинет</a></li>
+    </ul>
+{% endif %}

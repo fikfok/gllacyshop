@@ -16,7 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 import home.views as hm
-import admin.views as adm
+import adminapp.views as adm
+import product.views as pr
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,7 +25,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', hm.home, name='home'),
-    url(r'^admin/users/$', adm.admin_users, name="admin_users"),
+    url(r'^admin/products/$', pr.products, name="products"),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
 ]

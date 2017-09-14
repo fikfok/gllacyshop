@@ -32,25 +32,7 @@
                             </li>
                             <li><a class="main-menu-btn" href="#">Доставка и оплата</a></li>
                             <li><a class="main-menu-btn" href="#">О Компании</a></li>
-                            {% if user.is_staff %}
-                            <li>
-                                <a class="main-menu-btn" href="#">Панель управления</a>
-                                <ul class="main-sub-menu">
-                                    <li><a class="main-sub-menu-item" href="#">Заказы</a></li>
-                                    <li><a class="main-sub-menu-item" href="/admin/users/">Пользователи</a></li>
-                                    <li><a class="main-sub-menu-item" href="#">Товары</a></li>
-                                    <li><a class="main-sub-menu-item" href="#">Отзывы</a></li>
-                                </ul>
-                            </li>
-                            {% elif user.is_authenticated %}
-                            <li>
-                                <a class="main-menu-btn" href="#">Пользователь: {{ user.username }}</a>
-                                <ul class="main-sub-menu">
-                                    <li><a class="main-sub-menu-item" href="#">Мои заказы</a></li>
-                                    <li><a class="main-sub-menu-item" href="#">Личный кабинет</a></li>
-                                </ul>
-                            </li>
-                            {% endif %}
+                            <li class="user_panel">{% include "inc_user_auth_panel.html" %}</li>
                         </ul>
                     </section>
 
@@ -77,6 +59,9 @@
         </header>
 
         {% block home_main %}
+        {% endblock %}
+
+        {% block products %}
         {% endblock %}
 
         <footer class="main-footer">
@@ -118,6 +103,9 @@
 
         <script src="{% static "js/utils.js" %}"></script>
         <script src="{% static "js/backend.js" %}"></script>
-        <script src="{% static "js/script.js" %}"></script>
+        <script src="{% static "js/auth.js" %}"></script>
+        {% if current_page == "home"%}
+        <script src="{% static "js/slider.js" %}"></script>
+        {% endif %}
     </body>
 </html>
