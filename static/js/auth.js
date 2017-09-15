@@ -42,17 +42,12 @@ window.auth = (function () {
    * @param {object} evt - данные о событии
    */
   var openAuthDialog = function (evt) {
-
-
-
-    // if (!evt.target.closest('.user_is_authenticated')) {
     if (!authorizeForm.classList.contains('user_is_authenticated')) {
       authorizeDialog = document.querySelector('.authorize-form');
       utils.doOpen(authorizeDialog);
       authorizeForm.addEventListener('mouseleave', closeAuthDialogLeaveFormHandler);
       authorizeDialog.addEventListener('mouseleave', closeAuthDialogLeaveDialogHandler);
     }
-
   };
 
   /**
@@ -121,7 +116,7 @@ window.auth = (function () {
             authorizeDialogErrorMsg.classList.add('hideme');
             userPanelInHeaderMenu.innerHTML = response.userPanel;
             authorizeForm.innerHTML = response.authPanel;
-            // authorizeForm.classList.add('user_is_authenticated');
+            authorizeForm.classList.add('user_is_authenticated');
             authorizeDialog.classList.add('hideme');
             logoutBtnBehaivor();
           } else {
@@ -129,7 +124,7 @@ window.auth = (function () {
             authorizeDialogErrorMsg.classList.remove('hideme');
           }
         },
-        function() {
+        function () {
           console.log('ERROR');
         },
         loginData
@@ -147,22 +142,23 @@ window.auth = (function () {
         TIMEOUT,
         function (response) {
           if (response.authorizeStatus.toLowerCase() === 'ok') {
-            userPanelInHeaderMenu.innerHTML = response.userPanel;
-            authorizeForm.innerHTML = response.authPanel;
-            authorizeForm.classList.remove('user_is_authenticated');
+            window.location.href = '/';
+            // userPanelInHeaderMenu.innerHTML = response.userPanel;
+            // authorizeForm.innerHTML = response.authPanel;
+            // authorizeForm.classList.remove('user_is_authenticated');
           } else {
-            console.log('ERROR');
+            console.log('RESPONSE ERROR');
           }
         },
         function () {
-          console.log('ERROR');
+          console.log('CONNECTION ERROR');
         },
         null
     );
     logoutBtn.removeEventListener('click', utils.eventHandler(doLogout));
 
-    window.location.href = '/';
-
+    // debugger;
+    // window.location.href = '/';
   };
 
   var logoutBtnBehaivor = function () {
@@ -171,4 +167,6 @@ window.auth = (function () {
       logoutBtn.addEventListener('click', utils.eventHandler(doLogout));
     }
   };
+
+  logoutBtnBehaivor();
 })();

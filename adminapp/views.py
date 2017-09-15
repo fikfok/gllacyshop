@@ -22,7 +22,6 @@ def logout(request):
     auth.logout(request)
     authPanel = loader.render_to_string('inc_authrorize.html', request=request)
     data = {'authorizeStatus': 'ok', 'userPanel': '', 'authPanel': authPanel}
-    #
     return JsonResponse(data)
 
 def admin_users(request):

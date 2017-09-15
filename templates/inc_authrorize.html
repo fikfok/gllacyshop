@@ -1,9 +1,14 @@
 <form class="navigation-right-menu-authorize {% if user.is_authenticated %}user_is_authenticated{% endif %}">
     {% csrf_token %}
     {% if not user.is_authenticated %}
-    <a class="rounded-btn authorize-btn login-img">Вход</a>
+{#        <input type="button" class="rounded-btn authorize-btn login-img" value="Вход">#}
+{#        <button class="rounded-btn authorize-btn login-img">Вход</button>#}
+        <a class="rounded-btn authorize-btn login-img">Вход</a>
     {% else %}
-    <a class="rounded-btn authorize-btn logout-img logout-btn" href="/user/logout/">Выход</a>
+{#        <input type="button" class="rounded-btn authorize-btn logout-img logout-btn" value="Выход">#}
+{#        <button class="rounded-btn authorize-btn logout-img logout-btn">Выход</button>#}
+        <a class="rounded-btn authorize-btn logout-img logout-btn" >Выход</a>
+{#      href="/user/logout/"  #}
     {% endif %}
 
     <div class="authorize-form hideme clearfix">
