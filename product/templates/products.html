@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block home_main %}
+<main class="main-container">
+
+    <div class="center-container">
+
+        <div class="main-container-header clearfix">
+            <div class="breadcrumbs">
+                <ul class="breadcrumbs-links">
+                    <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
+                    <li><span class="breadcumbs-links-item">Товары</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="catalog">
+            <ul>
+                {% for item in object_list %}
+                <li>
+                    {{ item.name }} {{ item.price }}
+{#                    <a href="{% url 'gems_detail' gem.id %}">{{gem.name}}</a>#}
+{#                    <a href="{% url 'gems_delete' gem.id %}">Удалить</a>#}
+{#                    <a href="{% url 'gems_update' gem.id %}">Редактировать</a>#}
+                </li>
+                {% endfor %}
+            </ul>
+
+{#            <article class="catalog-item">#}
+{#                <a href="#"><img class="catalog-item-photo" src="img/item_1.jpg" width="267" height="267" alt="Сливочное крем-брюле с карамельной подливкой"></a>#}
+{#                <p class="catalog-item-price">#}
+{#                    <span class="catalog-item-price-value">310</span>#}
+{#                    <span class="catalog-item-price-currency"></span>#}
+{#                    <span class="catalog-item-price-for">/кг</span>#}
+{#                </p>#}
+{#                <p class="catalog-item-link-container">#}
+{#                    <a class="catalog-item-link" href="#"><span>Сливочное с апельсиновым джемом и цитрусовой стружкой</span></a>#}
+{#                </p>#}
+{#                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>#}
+{#            </article>#}
+
+        </section>
+
+
+    </div>
+</main>
+
+{% endblock %}

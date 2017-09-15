@@ -1,7 +1,8 @@
 'use strict';
 
 window.slider = (function () {
-  var slider = document.querySelector('.slider');
+  var body = document.querySelector('body');
+  var slider = body.querySelector('.slider');
   var rdbSlider1 = slider.querySelector('#slider-button-1');
   var rdbSlider2 = slider.querySelector('#slider-button-2');
   var rdbSlider3 = slider.querySelector('#slider-button-3');

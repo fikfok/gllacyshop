@@ -35,11 +35,11 @@ body {
     font-weight: bold;
 }
 
-.index-site {
+.home-site {
     background-color: #849d8f;
 }
 
-.catalog-site {
+.other-site {
     background-color: #849d8f;
 }
 
@@ -62,11 +62,11 @@ body {
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /*Header*/
-.index-site .main-header {
+.home-site .main-header {
     min-height: 70px;
 }
 
-.catalog-site .main-header {
+.other-site .main-header {
     min-height: 70px;
 }
 
@@ -664,15 +664,15 @@ body {
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /*main-container-header*/
-.index-site .main-container-header {
+.home-site .main-container-header {
     margin-bottom: 0px;
 }
 
-.catalog-site .main-container-header {
+.other-site .main-container-header {
     margin-bottom: 2px;
 }
 
-.catalog-site .breadcrumbs {
+.other-site .breadcrumbs {
     position: relative;
     float: left;
     font-size: 0px;
@@ -680,7 +680,7 @@ body {
 
 }
 
-.catalog-site .breadcrumbs-links li {
+.other-site .breadcrumbs-links li {
     display: inline-block;
     margin-right: 21px;
 }
@@ -758,7 +758,7 @@ a.breadcumbs-links-item:hover {
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /*Слайдер*/
-.index-site input[name="slider-button"] {
+.home-site input[name="slider-button"] {
   display: none;
 }
 

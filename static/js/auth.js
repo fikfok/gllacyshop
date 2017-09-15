@@ -1,41 +1,19 @@
 'use strict';
 
 window.auth = (function () {
-  var SERVER_URL_LOGIN = 'user/login/';
+  var SERVER_URL_LOGIN = '/user/login/';
   var SERVER_URL_LOGOUT = '/user/logout/';
   var TIMEOUT = 15000;
   var RESPONSE_TYPE = 'json';
 
   var body = document.querySelector('body');
-  // var btnFeedbackOpen = body.querySelector('.feedback-btn');
-  // var feedback = body.querySelector('.feedback');
-  // var btnFeedbackClose = feedback.querySelector('.feedback-form-close-btn');
-
   var header = body.querySelector('.main-header');
   var headerRightSide = header.querySelector('.navigation-right-side');
   var authorizeForm = headerRightSide.querySelector('.navigation-right-menu-authorize');
   var authorizeDialog = headerRightSide.querySelector('.authorize-form');
   var authorizeDialogErrorMsg = authorizeDialog.querySelector('.authorize-form-error-block');
   var userPanelInHeaderMenu = header.querySelector('.user_panel');
-
-
   var utils = window.utils;
-
-  /**
-   * Открываю окно обратной связи
-   * @return {function} - функция, которую надо выполнить
-   */
-  // var openFeedback = function () {
-  //   return utils.doOpen(feedback);
-  // };
-
-  /**
-   * Закрываю окно обратной связи
-   * @return {function} - функция, которую надо выполнить
-   */
-  // var closeFeedback = function () {
-  //   return utils.doClose(feedback);
-  // };
 
   /**
    * Открытие диалогового окна для авторизации
@@ -92,10 +70,6 @@ window.auth = (function () {
     return res;
   };
 
-
-  // btnFeedbackOpen.addEventListener('click', utils.eventHandler(openFeedback));
-  // btnFeedbackClose.addEventListener('click', utils.eventHandler(closeFeedback));
-  // document.addEventListener('keydown', utils.escPressHandler(closeFeedback));
   document.addEventListener('keydown', utils.escPressHandler(closeAuthDialog));
   document.addEventListener('click', utils.eventHandler(closeAuthDialogByClick));
 
@@ -143,9 +117,6 @@ window.auth = (function () {
         function (response) {
           if (response.authorizeStatus.toLowerCase() === 'ok') {
             window.location.href = '/';
-            // userPanelInHeaderMenu.innerHTML = response.userPanel;
-            // authorizeForm.innerHTML = response.authPanel;
-            // authorizeForm.classList.remove('user_is_authenticated');
           } else {
             console.log('RESPONSE ERROR');
           }
@@ -156,9 +127,6 @@ window.auth = (function () {
         null
     );
     logoutBtn.removeEventListener('click', utils.eventHandler(doLogout));
-
-    // debugger;
-    // window.location.href = '/';
   };
 
   var logoutBtnBehaivor = function () {
