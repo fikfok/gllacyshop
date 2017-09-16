@@ -27,7 +27,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', hm.home, name='home'),
-    url(r'^admin/products/$', pr.products, name="products"),
+    url(r'^admin/products/$', pr.ProductsListView.as_view(), name="products"),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
 ]

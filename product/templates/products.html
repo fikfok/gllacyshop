@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block home_main %}
+{% block products %}
 <main class="main-container">
 
     <div class="center-container">
@@ -16,32 +16,55 @@
         </div>
 
         <section class="catalog">
-            <ul>
-                {% for item in object_list %}
-                <li>
-                    {{ item.name }} {{ item.price }}
-{#                    <a href="{% url 'gems_detail' gem.id %}">{{gem.name}}</a>#}
-{#                    <a href="{% url 'gems_delete' gem.id %}">Удалить</a>#}
-{#                    <a href="{% url 'gems_update' gem.id %}">Редактировать</a>#}
-                </li>
-                {% endfor %}
-            </ul>
+            <div class="products-list">
+                <div class="cart-content-table">
 
-{#            <article class="catalog-item">#}
-{#                <a href="#"><img class="catalog-item-photo" src="img/item_1.jpg" width="267" height="267" alt="Сливочное крем-брюле с карамельной подливкой"></a>#}
-{#                <p class="catalog-item-price">#}
-{#                    <span class="catalog-item-price-value">310</span>#}
-{#                    <span class="catalog-item-price-currency"></span>#}
-{#                    <span class="catalog-item-price-for">/кг</span>#}
-{#                </p>#}
-{#                <p class="catalog-item-link-container">#}
-{#                    <a class="catalog-item-link" href="#"><span>Сливочное с апельсиновым джемом и цитрусовой стружкой</span></a>#}
-{#                </p>#}
-{#                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>#}
-{#            </article>#}
+                    <div class="cart-table-row">
+                        <div class="cart-table-cel">
+                            <button class="cart-delete-item" type="button" title="Закрыть">Удалить</button>
+                        </div>
+                        <div class="cart-table-cel">
+{#                            <img class="cart-icon-item" src="{% static "../../media/products/item_1.jpg" %}" width="33" height="33" alt="Пломбир с апельсиновым джемом">#}
+                            <a href="#"><img class="item-image" src="{% static "../../media/products/item_1.jpg" %}" width="267" height="267" alt="Сливочное с апельсиновым джемом и цитрусвой стружкой"></a>
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart">Пломбир с апельсиновым джемом</span>
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart-weight">1,5 кг х </span><span class="item-in-cart-price">200 руб.</span>
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart-total">300 руб.</span>
+                        </div>
+                    </div>
 
+                    <div class="cart-table-row">
+                        <div class="cart-table-cel">
+                            <button class="cart-delete-item" type="button" title="Закрыть">Удалить</button>
+                        </div>
+                        <div class="cart-table-cel">
+                            <img class="cart-icon-item" src="{% static "../../media/products/item_3.jpg" %}" width="33" height="33" alt="Клубничный пломбир с присыпкой из белого шоколада">
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart">Клубничный пломбир с присыпкой из белого шоколада</span>
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart-weight">1,5 кг х </span><span class="item-in-cart-price">300 руб.</span>
+                        </div>
+                        <div class="cart-table-cel">
+                            <span class="item-in-cart-total">450 руб.</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            <div class="cart-footer">
+                <p class="cart-total-price">Итого: 750 руб.</p>
+                <a class="red-btn make-order-btn" href="#">Оформить заказ</a>
+            </div>
+
+        </div>
         </section>
-
 
     </div>
 </main>
