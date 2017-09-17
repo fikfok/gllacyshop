@@ -660,6 +660,13 @@ body {
     padding-top: 12px;
 }
 
+.add-product {
+    width: 173px;
+    text-align: center;
+    padding: 0px;
+    padding-top: 12px;
+    float: left;
+}
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -982,7 +989,8 @@ a.breadcumbs-links-item:hover {
 }
 
 .item-image,
-.catalog-item-photo {
+.catalog-item-photo,
+.cart-icon-item {
     border-radius: 50%;
 }
 
@@ -2432,10 +2440,7 @@ input, textarea {
 
 
 .products-list {
-    width: 540px;
-    left: -423px;
-    top: 36px;
-    z-index: 1;
+    width: 790px;
     background-color: #f8f7f4;
     border-radius: 5px;
     -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
@@ -2446,4 +2451,22 @@ input, textarea {
     padding-left: 17px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+}
+
+.products-list-content-table {
+    display: table;
+    font-size: 13px;
+    line-height: 1.23em;
+    margin-bottom: 18px;
+}
+
+.products-list-table-row {
+    display: table-row;
+    border-color: red;
+}
+
+.products-list-table-cel {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 30px;
 }
