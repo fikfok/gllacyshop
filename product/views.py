@@ -12,40 +12,40 @@ class ProductsListView(ListView):
     template_name = 'products.html'
     paginate_by = 3
 
-    # def get(self, *args, **kwargs):
-    #     request = self.request
-    #     print(request.GET.get('page'))
-    #     try:
-    #         return super(ProductsListView, self).get(*args, **kwargs)
-    #     except Http404:
-    #         print('rrrrrrrrrrrrrrrrrrrrrrr')
-    #         # if request.GET.get('page', 1) == 1:
-    #         #     raise
-
-        # return redirect('%s?%s' % (request.path, page1.urlencode()))
-
     def get_context_data(self, **kwargs):
-        context = super(ProductsListView, self).get_context_data(**kwargs)
         prod_list = Product.objects.all()
         paginator = Paginator(prod_list, self.paginate_by)
 
         page = self.request.GET.get('page')
-        print(self.request.GET.get('page'))
-
         try:
-            prod_page = paginator.page(page)
+            object_list = paginator.page(page)
         except PageNotAnInteger:
-            print('NOT INT!!!!!!')
-            # prod_page = paginator.page(1)
+            self.kwargs['page'] = 1
+            object_list = paginator.page(1)
         except EmptyPage:
-            print('EMPTY!!!!!!')
-            # prod_page = paginator.page(paginator.num_pages)
+            self.kwargs['page'] = 1
+            object_list = paginator.page(1)
 
-        # prod_page = paginator.page(1)
+        # try:
+        #     context = super(ProductsListView, self).get_context_data(**kwargs)
+        # except Http404:
+        #     self.kwargs['page'] = 1
+        #     self.kwargs['media_url'] = MEDIA_URL
+        #     return super(ProductsListView, self).get_context_data(**kwargs)
+
+        context = super(ProductsListView, self).get_context_data(**kwargs)
         context['media_url'] = MEDIA_URL
-        context['object_list'] = paginator.page(1)
+        context['object_list'] = object_list
         return context
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, *args, **kwargs):
+
+        print(self.request.GET.get('page'))
+
         return super(ListView, self).dispatch(*args, **kwargs)
+
+    # def get(self, *args, **kwargs):
+    #     if kwargs['username'] != request.user.username:
+    #         return redirect('index')
+    #     return super(PhotoListView, self).get(*args, **kwargs)
