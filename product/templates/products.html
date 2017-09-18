@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load my_tags %}
 
 {% block products %}
 <main class="main-container">
@@ -20,9 +21,8 @@
 
                     {% for item in object_list %}
                         <div class="products-list-table-row">
-                            <div class="products-list-table-cel"></div>
                             <div class="products-list-table-cel">
-                                <img class="cart-icon-item" src="{{ media_url }}{{ item.photo }}" width="100" height="100" alt="{{ item.name }}">
+                                <img class="cart-icon-item" src="{{ media_url }}{{ item.photo }}" width="267" height="267" alt="{{ item.name }}">
                             </div>
                             <div class="products-list-table-cel">
                                 <span class="item-in-cart">{{ item.name }}</span>
@@ -36,44 +36,28 @@
                         </div>
                     {% endfor %}
 
-
-                    <div class="cart-table-row">
-                        <div class="cart-table-cel">
-                            <button class="cart-delete-item" type="button" title="Закрыть">Удалить</button>
-                        </div>
-                        <div class="cart-table-cel">
-                            <img class="cart-icon-item" src="{% static "../media/products/item_1.jpg" %}" width="100" height="100" alt="Пломбир с апельсиновым джемом">
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart">Пломбир с апельсиновым джемом</span>
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart-weight">1,5 кг х </span><span class="item-in-cart-price">200 руб.</span>
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart-total">300 руб.</span>
-                        </div>
-                    </div>
-
-                    <div class="cart-table-row">
-                        <div class="cart-table-cel">
-                            <button class="cart-delete-item" type="button" title="Закрыть">Удалить</button>
-                        </div>
-                        <div class="cart-table-cel">
-                            <img class="cart-icon-item" src="{% static "../media/products/item_3.jpg" %}" width="33" height="33" alt="Клубничный пломбир с присыпкой из белого шоколада">
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart">Клубничный пломбир с присыпкой из белого шоколада</span>
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart-weight">1,5 кг х </span><span class="item-in-cart-price">300 руб.</span>
-                        </div>
-                        <div class="cart-table-cel">
-                            <span class="item-in-cart-total">450 руб.</span>
-                        </div>
-                    </div>
-
                 </div>
+
+            <div class="paginator clearfix">
+                <ul class="paginator-links">
+
+                    {% if page_obj.has_previous %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast" href="?page={{ page_obj.previous_page_number }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+
+                    {% for page_num in paginator.num_pages|my_range %}
+                        <li><a class="paginator-btn--contrast paginator-btn--contrast {% if page_num == page_obj.number %}paginator-btn--active--contrast{% endif %}" {% if page_num != page_obj.number %}href="?page={{ page_num }}"{% endif %}>{{ page_num }}</a></li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast" href="?page={{ page_obj.next_page_number }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+                </ul>
+            </div>
 
             <div class="cart-footer clearfix">
                 <a class="red-btn add-product" href="#">Добавить</a>

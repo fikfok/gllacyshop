@@ -600,7 +600,6 @@ body {
 
 .cart-table-row .cart-table-cel:nth-child(3) {
     padding-right: 28px;
-    /*vertical-align: middle;*/
 }
 
 .cart-table-row .cart-table-cel {
@@ -661,11 +660,15 @@ body {
 }
 
 .add-product {
-    width: 173px;
     text-align: center;
-    padding: 0px;
-    padding-top: 12px;
+    vertical-align: bottom;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
     float: left;
+    font-size: 13px;
+    line-height: 1.23em;
+    font-weight: normal;
 }
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -676,7 +679,7 @@ body {
 }
 
 .other-site .main-container-header {
-    margin-bottom: 2px;
+    margin-bottom: 20px;
 }
 
 .other-site .breadcrumbs {
@@ -2440,8 +2443,9 @@ input, textarea {
 
 
 .products-list {
-    width: 790px;
+    width: 890px;
     background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
     border-radius: 5px;
     -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
             box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
@@ -2455,6 +2459,7 @@ input, textarea {
 
 .products-list-content-table {
     display: table;
+    table-layout: fixed;
     font-size: 13px;
     line-height: 1.23em;
     margin-bottom: 18px;
@@ -2462,11 +2467,28 @@ input, textarea {
 
 .products-list-table-row {
     display: table-row;
-    border-color: red;
 }
 
 .products-list-table-cel {
     display: table-cell;
     vertical-align: middle;
     padding-right: 30px;
+    border-bottom: 1px solid #838380;
+}
+
+.products-list-table-cel:nth-child(1) {
+    padding-top: 5px;
+    width: 34%;
+}
+
+.products-list-table-cel:nth-child(2) {
+    width: 36%;
+}
+
+.products-list-table-cel:nth-child(3) {
+    width: 17%;
+}
+
+.products-list-table-cel:nth-child(4) {
+    width: 13%;
 }

@@ -1,0 +1,103 @@
+.paginator-btn--contrast {
+    font-size: 16px;
+    line-height: 1.12em;
+    text-decoration: none;
+    color: #000000;
+    font-weight: normal;
+}
+
+.paginator-btn--contrast,
+.paginator-btn-arrow--contrast {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    background-color: transparent;
+    min-width: 26px;
+    height: 26px;
+    border-radius: 20px;
+    padding: 4px 9px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.paginator-btn--active--contrast {
+    color: #323232;
+    background-color: #979797;
+}
+
+.paginator-btn--contrast:not(.paginator-btn--active--contrast):hover,
+.paginator-btn-arrow--contrast:not(.arrow-disabled--contrast):hover {
+    background-color: #cfcfcf;
+}
+
+
+.left-arrow--contrast::before,
+.left-arrow--contrast::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 2px;
+    background-color: #000000;
+    z-index: 1;
+}
+
+.left-arrow--contrast::before {
+    top: 15px;
+    left: 7px;
+
+}
+
+.left-arrow--contrast::after {
+    top: 9px;
+    left: 7px;
+
+}
+
+.left-arrow--contrast::before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+.left-arrow--contrast::after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+
+.arrow-disabled--contrast {
+    opacity: 0.2;
+}
+
+.right-arrow--contrast::before,
+.right-arrow--contrast::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 2px;
+    background-color: #000000;
+    z-index: 1;
+}
+
+.right-arrow--contrast::before {
+    top: 15px;
+    right: 7px;
+
+}
+
+.right-arrow--contrast::after {
+    top: 9px;
+    right: 7px;
+
+}
+
+.right-arrow--contrast::before {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+
+.right-arrow--contrast::after {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}

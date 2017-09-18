@@ -73,69 +73,23 @@
         </div>
 
         <div class="hits-group clearfix">
+            {% for item in object_list %}
             <article class="hit-item">
                 <div class="hit-item-photo">
-                    <a href="#"><img class="item-image" src="{% static "../../media/products/item_1.jpg" %}" width="267" height="267" alt="Сливочное с апельсиновым джемом и цитрусвой стружкой"></a>
+                    <a href="#"><img class="item-image" src="{{ media_url }}{{ item.photo }}" width="267" height="267" alt="{{ item.name }}"></a>
                     <div class="hit-item-corner-badge"></div>
                 </div>
                 <p class="hit-price">
-                    <span class="hit-price-value">310</span>
+                    <span class="hit-price-value">{{ item.price }}</span>
                     <span class="hit-price-currency"></span>
                     <span class="hit-price-for">/кг</span>
                 </p>
                 <p class="hit-item-link-container">
-                    <a class="hit-item-link" href="#"><span>Сливочное с апельсиновым джемом и цитрусовой стружкой</span></a>
+                    <a class="hit-item-link" href="#"><span>{{ item.name }}</span></a>
                 </p>
                 <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
             </article>
-
-            <article class="hit-item">
-                <div class="hit-item-photo">
-                    <a href="#"><img class="item-image" src="{% static "../../media/products/item_2.jpg" %}" width="267" height="267" alt="Сливочно-кофейное с кусочками шоколада"></a>
-                    <div class="hit-item-corner-badge"></div>
-                </div>
-                <p class="hit-price">
-                    <span class="hit-price-value">380</span>
-                    <span class="hit-price-currency"></span>
-                    <span class="hit-price-for">/кг</span>
-                </p>
-                <p class="hit-item-link-container">
-                    <a class="hit-item-link" href="#"><span>Сливочно-кофейное с кусочками шоколада</span></a>
-                </p>
-                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
-            </article>
-
-            <article class="hit-item">
-                <div class="hit-item-photo">
-                    <a href="#"><img class="item-image" src="{% static "../../media/products/item_3.jpg" %}" width="267" height="267" alt="Сливочно-клубничное с присыпкой из белого шоколада"></a>
-                    <div class="hit-item-corner-badge"></div>
-                </div>
-                <p class="hit-price">
-                    <span class="hit-price-value">355</span>
-                    <span class="hit-price-currency"></span>
-                    <span class="hit-price-for">/кг</span>
-                </p>
-                <p class="hit-item-link-container">
-                    <a class="hit-item-link" href="#"><span>Сливочно-клубничное с присыпкой из белого шоколада</span></a>
-                </p>
-                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
-            </article>
-
-            <article class="hit-item">
-                <div class="hit-item-photo">
-                    <a href="#"><img class="item-image" src="{% static "../../media/products/item_4.jpg" %}" width="267" height="267" alt="Сливочное крем-брюле с карамельной подливкой"></a>
-                    <div class="hit-item-corner-badge"></div>
-                </div>
-                <p class="hit-price">
-                    <span class="hit-price-value">415</span>
-                    <span class="hit-price-currency"></span>
-                    <span class="hit-price-for">/кг</span>
-                </p>
-                <p class="hit-item-link-container">
-                    <a class="hit-item-link" href="#"><span>Сливочное крем-брюле с карамельной подливкой</span></a>
-                </p>
-                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
-            </article>
+            {% endfor %}
         </div>
 
         <section class="seo">
