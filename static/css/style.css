@@ -2473,7 +2473,7 @@ input, textarea {
 .products-list-table-cel {
     display: table-cell;
     vertical-align: middle;
-    padding-right: 30px;
+    padding-right: 20px;
     border-bottom: 1px solid #838380;
 }
 
@@ -2483,15 +2483,23 @@ input, textarea {
 }
 
 .products-list-table-cel:nth-child(2) {
-    width: 36%;
+    width: 26%;
 }
 
 .products-list-table-cel:nth-child(3) {
-    width: 17%;
+    width: 10%;
 }
 
 .products-list-table-cel:nth-child(4) {
+    width: 17%;
+}
+
+.products-list-table-cel:nth-child(5) {
     width: 13%;
+}
+
+.wo-padding-top {
+    padding-top: 0px;
 }
 /*------------------------------------------------*/
 
@@ -2520,5 +2528,12 @@ input, textarea {
     width: 75%;
 }
 
+.product-update-photo {
+    display: inline-block;
+}
 
+.product-update-photo img {
+    border-radius: 50%;
+    vertical-align: middle;
+}
 /*------------------------------------------------*/

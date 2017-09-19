@@ -18,7 +18,7 @@
         <section class="catalog">
             <div class="products-list">
 
-                <form  method="post" action="">
+                <form class="clearfix" method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="products-list-content-table" style="width: 100%">
                         {% for field in form %}
@@ -27,23 +27,24 @@
                                 {{ field.label_tag }}
                             </div>
                             <div class="products-update-table-cel">
-                                {{ field|find_href_src }}
+                                {% if field.field.widget|tag_name == 'ClearableFileInput' %}
+                                    <div class="product-update-photo">
+                                        <img src="{{ field|find_href_src }}" width="100px" height="100px"><br>
+                                    </div>
+                                    <div class="product-update-photo">
+                                        {{ field }}
+                                    </div>
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
                                 {% if field.field.widget|tag_name == 'CheckboxInput' %}
                                     <label for="{{field.id_for_label}}" class="chck-product-labels--contrast"><span class="checkmark--contrast"></span></label>
                                 {% endif %}
                             </div>
-{#                            <div class="products-update-table-cel">#}
-{#                                <ul>#}
-{#                                    {% for error in field.errors %}#}
-{#                                        <li class="error">errors:{{ error }}</li>#}
-{#                                    {% endfor %}#}
-{#                                    {{ field }}#}
-{#                                </ul>#}
-{#                            </div>#}
                         </div>
                         {% endfor %}
                     </div>
-                    <input type="submit" value="Сохранить">
+                    <input class="red-btn product-btn wo-padding-top" type="submit" value="Сохранить">
                 </form>
 
             </div>

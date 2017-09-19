@@ -1,11 +1,6 @@
 from django import forms
 from .models import Product
 
-
-class ImageThumbnailFileInput(forms.ClearableFileInput):
-    template_name = 'photo_thumbnail.html'
-
-
 class ProductEditForm(forms.ModelForm):
 
     """
