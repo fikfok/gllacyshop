@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static "css/normalize.css" %}">
         <link rel="stylesheet" href="{% static "css/style.css" %}">
         <link rel="stylesheet" href="{% static "css/paginator-contrast.css" %}">
+        <link rel="stylesheet" href="{% static "css/controls-contrast.css" %}">
     </head>
     <body class="{% if current_page == "home"%}home-site{% else %}other-site{% endif %}">
         <header class="main-header">
@@ -59,10 +60,7 @@
             </div>
         </header>
 
-        {% block home_main %}
-        {% endblock %}
-
-        {% block products %}
+        {% block content %}
         {% endblock %}
 
         <footer class="main-footer">

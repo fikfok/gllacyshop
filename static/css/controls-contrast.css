@@ -1,0 +1,120 @@
+.chck-product-labels--contrast {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1.12em;
+    font-weight: normal;
+    color: #ffffff;
+    cursor: pointer;
+    height: 20px;
+}
+
+.chck-product-labels--contrast::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0px;
+    /*left: -31px;*/
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.chck-product-labels--contrast:hover::before {
+    border-width: 2px;
+}
+
+.checkmark--contrast {
+    position: relative;
+}
+
+.checkmark--contrast::before,
+.checkmark--contrast::after {
+    position: absolute;
+    content: "";
+    display: none;
+    height: 2px;
+    background-color: #000000;
+}
+
+.checkmark--contrast::before {
+    top: 10px;
+    left: 5px;
+    width: 6px;
+}
+
+.checkmark--contrast::after {
+    top: 9px;
+    left: 7px;
+    width: 10px;
+}
+
+.checkmark--contrast::before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+.checkmark--contrast::after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+
+#id_is_hit:checked ~ .chck-product-labels--contrast[for="id_is_hit"] .checkmark--contrast::before,
+#id_is_hit:checked ~ .chck-product-labels--contrast[for="id_is_hit"] .checkmark--contrast::after,
+#id_is_new:checked ~ .chck-product-labels--contrast[for="id_is_new"] .checkmark--contrast::before,
+#id_is_new:checked ~ .chck-product-labels--contrast[for="id_is_new"] .checkmark--contrast::after{
+    display: block;
+}
+
+.select-conteiner::before {
+    position: absolute;
+    display: block;
+    width: 10%;
+    height: 36px;
+    top: -8px;
+    left: 0px;
+    content: "";
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.dropdown-list--contrast {
+    font-size: 16px;
+    line-height: 1.18em;
+    background-color: white;
+    color: #000000;
+    border-width: 0px;
+    width: 164px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    background-image: url("../img/select_arrow_black.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    z-index: 10;
+}
+
+.dropdown-list--contrast option {
+    background-color: transparent;
+    color: #000000;
+}
+
+.dropdown-list--contrast::-ms-value {
+    background: none;
+}
+
+.dropdown-list--contrast:hover::-ms-value {
+    color: #000000;
+}
+
+
+.dropdown-list--contrast::-ms-expand {
+    display: none;
+}

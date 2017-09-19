@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load my_tags %}
+
+{% block content %}
+<main class="main-container">
+
+    <div class="center-container">
+
+        <div class="main-container-header clearfix">
+            <div class="breadcrumbs">
+                <ul class="breadcrumbs-links">
+                    <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
+                    <li><span class="breadcumbs-links-item">Товары</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="catalog">
+            <div class="products-list">
+
+                <form  method="post" action="">
+                    {% csrf_token %}
+                    <div class="products-list-content-table" style="width: 100%">
+                        {% for field in form %}
+                        <div class="products-list-table-row">
+                            <div class="products-update-table-cel">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="products-update-table-cel">
+                                {{ field|find_href_src }}
+                                {% if field.field.widget|tag_name == 'CheckboxInput' %}
+                                    <label for="{{field.id_for_label}}" class="chck-product-labels--contrast"><span class="checkmark--contrast"></span></label>
+                                {% endif %}
+                            </div>
+{#                            <div class="products-update-table-cel">#}
+{#                                <ul>#}
+{#                                    {% for error in field.errors %}#}
+{#                                        <li class="error">errors:{{ error }}</li>#}
+{#                                    {% endfor %}#}
+{#                                    {{ field }}#}
+{#                                </ul>#}
+{#                            </div>#}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <input type="submit" value="Сохранить">
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+{% endblock %}

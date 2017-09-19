@@ -2,7 +2,7 @@
 {% load static %}
 {% load my_tags %}
 
-{% block products %}
+{% block content %}
 <main class="main-container">
 
     <div class="center-container">
@@ -28,10 +28,10 @@
                                 <span class="item-in-cart">{{ item.name }}</span>
                             </div>
                             <div class="products-list-table-cel">
-                                <a class="red-btn add-product" href="#">Редактировать</a>
+                                <a class="red-btn product-btn" href="{% url 'products_update' item.id %}">Редактировать</a>
                             </div>
                             <div class="products-list-table-cel">
-                                <a class="red-btn add-product" href="#">Удалить</a>
+                                <a class="red-btn product-btn" href="#">Удалить</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -59,8 +59,8 @@
                 </ul>
             </div>
 
-            <div class="cart-footer clearfix">
-                <a class="red-btn add-product" href="#">Добавить</a>
+            <div class="products-list-footer clearfix">
+                <a class="red-btn product-btn" href="#">Добавить</a>
             </div>
 
         </div>

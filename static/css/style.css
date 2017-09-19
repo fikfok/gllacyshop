@@ -659,7 +659,7 @@ body {
     padding-top: 12px;
 }
 
-.add-product {
+.product-btn {
     text-align: center;
     vertical-align: bottom;
     padding-left: 20px;
@@ -2441,7 +2441,8 @@ input, textarea {
     font-family: "Roboto", "Arial", sans-serif;
 }
 
-
+/*------------------------------------------------*/
+/*Таблица вывода всех продуктов*/
 .products-list {
     width: 890px;
     background-color: #f8f7f4;
@@ -2492,3 +2493,32 @@ input, textarea {
 .products-list-table-cel:nth-child(4) {
     width: 13%;
 }
+/*------------------------------------------------*/
+
+
+/*------------------------------------------------*/
+/*Таблица правки продукта*/
+.products-update-table-cel {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 30px;
+}
+
+.fixed-trextarea {
+    width: 100%;
+    rows: 2;
+    resize: none;
+}
+
+.products-update-table-cel:nth-child(1) {
+    width: 25%;
+    text-align: right;
+}
+
+.products-update-table-cel:nth-child(2) {
+    padding-top: 5px;
+    width: 75%;
+}
+
+
+/*------------------------------------------------*/

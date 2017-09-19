@@ -28,6 +28,7 @@ urlpatterns = [
 urlpatterns += [
     url(r'^$', hm.Home.as_view(), name='home'),
     url(r'^admin/products/$', pr.ProductsListView.as_view(), name="products"),
+    url(r'^admin/products/update/(?P<pk>\d+)/$', pr.ProductsUpdateView.as_view(), name='products_update'),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
 ]
