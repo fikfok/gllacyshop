@@ -2464,6 +2464,7 @@ input, textarea {
     font-size: 13px;
     line-height: 1.23em;
     margin-bottom: 18px;
+    width: 100%
 }
 
 .products-list-table-row {

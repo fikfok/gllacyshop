@@ -10,7 +10,8 @@ def tag_name(obj):
     return obj.__class__.__name__
 
 def find_href_src(obj):
-    return re.findall(r'<a href="(.+)">', str(obj))[0]
+    res = re.findall(r'<a href="(.+)">', str(obj))
+    return res[0] if res else ''
 
 register.filter('my_range', my_range)
 register.filter('tag_name', tag_name)

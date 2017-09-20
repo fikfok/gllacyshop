@@ -1,0 +1,86 @@
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/*Модальное окно обратной связи*/
+.confirm-delete {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.confirm-delete-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-left: -237px;
+    width: 477px;
+    height: 442px;
+    padding: 17px 24px;
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-position: right top;
+    border-radius: 10px;
+    z-index: 2;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.confirm-delete-title {
+    font-size: 24px;
+    line-height: 1.16em;
+    font-weight: normal;
+    color: #323232;
+    margin-bottom: 20px;
+}
+
+.confirm-delete-form {
+    position: absolute;
+    bottom: 7%;
+    right: 6%;
+}
+
+.confirm-delete-btn {
+    float: right;
+    padding: 11px 21px;
+}
+
+.confirm-delete-form-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    font-size: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.confirm-delete-form-close-btn::before,
+.confirm-delete-form-close-btn::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    width: 20px;
+    height: 2px;
+    background-color: #000000;
+}
+
+.confirm-delete-form-close-btn::before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+.confirm-delete-form-close-btn::after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+
+.confirm-delete-message {
+    font-size: 18px;
+    line-height: 1.16em;
+}
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

@@ -31,10 +31,10 @@
                                 <span class="item-in-cart">{{ item.price }} руб.</span>
                             </div>
                             <div class="products-list-table-cel">
-                                <a class="red-btn product-btn" href="{% url 'products_update' item.id %}">Редактировать</a>
+                                <a class="red-btn product-btn" href="{% url 'products_update' pk=item.id %}">Редактировать</a>
                             </div>
                             <div class="products-list-table-cel">
-                                <a class="red-btn product-btn" href="#">Удалить</a>
+                                <a class="red-btn product-btn delete-product-btn" href="#" data-id="{{ item.pk }}" data-name="{{ item.name }}">Удалить</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -63,11 +63,30 @@
             </div>
 
             <div class="products-list-footer clearfix">
-                <a class="red-btn product-btn" href="#">Добавить</a>
+                <a class="red-btn product-btn" href="{% url 'products_create' %}">Добавить</a>
             </div>
 
         </div>
         </section>
+
+        <section class="confirm-delete hideme">
+            <div class="confirm-delete-container clearfix" style="height: 250px">
+                <button class="confirm-delete-form-close-btn" type="button" title="Закрыть">Закрыть</button>
+                <p class="confirm-delete-title">
+                    Удаление товара
+                </p>
+                <div class="txt-box-container">
+                    <p class="confirm-delete-message"></p>
+                </div>
+                <form class="confirm-delete-form" action="{% url 'products_delete' pk=0 %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="red-btn confirm-delete-btn" name="confirm-delete" value="Удалить">
+                </form>
+
+
+            </div>
+        </section>
+
 
     </div>
 </main>

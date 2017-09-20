@@ -9,8 +9,9 @@
         <link rel="stylesheet" href="{% static "css/style.css" %}">
         <link rel="stylesheet" href="{% static "css/paginator-contrast.css" %}">
         <link rel="stylesheet" href="{% static "css/controls-contrast.css" %}">
+        <link rel="stylesheet" href="{% static "css/confirm-delete.css" %}">
     </head>
-    <body class="{% if current_page == "home"%}home-site{% else %}other-site{% endif %}">
+    <body class="{% if current_site == "home"%}home-site{% else %}other-site{% endif %}">
         <header class="main-header">
             <div class="center-container clearfix">
 
@@ -103,9 +104,11 @@
         <script src="{% static "js/utils.js" %}"></script>
         <script src="{% static "js/backend.js" %}"></script>
         <script src="{% static "js/auth.js" %}"></script>
-        {% if current_page == "home"%}
+        {% if current_site == "home"%}
         <script src="{% static "js/slider.js" %}"></script>
         <script src="{% static "js/feedback.js" %}"></script>
+        {% elif current_site == "products_list"%}
+        <script src="{% static "js/products_list.js" %}"></script>
         {% endif %}
     </body>
 </html>

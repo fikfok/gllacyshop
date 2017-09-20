@@ -1,0 +1,29 @@
+{% load my_tags %}
+
+{% csrf_token %}
+<div class="products-list-content-table" >
+    {% for field in form %}
+    <div class="products-list-table-row">
+        <div class="products-update-table-cel">
+            {{ field.label_tag }}
+        </div>
+        <div class="products-update-table-cel">
+            {% if field.field.widget|tag_name == 'ClearableFileInput' %}
+                {% if current_site == "products_update"%}
+                    <div class="product-update-photo">
+                        <img src="{{ field|find_href_src }}" width="100px" height="100px"><br>
+                    </div>
+                {% endif %}
+                <div class="product-update-photo">
+                    {{ field }}
+                </div>
+            {% else %}
+                {{ field }}
+            {% endif %}
+            {% if field.field.widget|tag_name == 'CheckboxInput' %}
+                <label for="{{field.id_for_label}}" class="chck-product-labels--contrast"><span class="checkmark--contrast"></span></label>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>

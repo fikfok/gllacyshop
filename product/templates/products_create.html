@@ -10,7 +10,7 @@
                 <ul class="breadcrumbs-links">
                     <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
                     <li><a class="breadcumbs-links-item" href="{% url 'products'%}?page={{ page_number }}">Товары</a></li>
-                    <li><span class="breadcumbs-links-item">{{ current_prod_name }}</span></li>
+                    <li><span class="breadcumbs-links-item">Создание нового товара</span></li>
                 </ul>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
                 <form class="clearfix" method="post" action="" enctype="multipart/form-data">
                     {% include 'inc_product_form.html' %}
-                    <input class="red-btn product-btn wo-padding-top" type="submit" value="Сохранить">
+                    <input class="red-btn product-btn wo-padding-top" type="submit" value="Добавить">
                 </form>
 
             </div>
