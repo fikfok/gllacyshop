@@ -16,19 +16,28 @@ class UsersListView(ListView):
     model = User
     template_name = 'users.html'
     paginate_by = ITEMS_IN_PAGES
-    filter_value = ''
-    filter_field = ''
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
         context['current_site'] = 'users_list'
-        self.filter_field = self.request.GET.get('filter-field-name')
-        self.filter_value = self.request.GET.get('filter-value')
+        context['first_name'] = self.request.GET.get('first-name', '')
+        context['last_name'] = self.request.GET.get('last-name', '')
+        context['login'] = self.request.GET.get('login', '')
+        context['email'] = self.request.GET.get('email', '')
+        context['address'] = self.request.GET.get('address', '')
         return context
 
     def get_queryset(self):
-        print(self.filter_field)
-        return User.objects.select_related('address').all
+        qs = User.objects.filter(
+            first_name__contains=self.request.GET.get('first-name', ''),
+            last_name__contains=self.request.GET.get('last-name', ''),
+            username__contains=self.request.GET.get('login', ''),
+            email__contains=self.request.GET.get('email', ''))
+        if self.request.GET.get('address'):
+            qs = qs.filter(address__address__contains=self.request.GET.get('address'))
+        return qs
+
+
 
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))

@@ -17,17 +17,41 @@
         </div>
         <section class="catalog">
             <div class="users-list">
-                <form method="get" action="">
-                    <p>Filter: <input type="text" value="filter" name="filter-value"/></p>
-                    <p>order_by:
-                        <select id="filter-field-name" name="filter-field-name" title="Поле фильтрации">
-                            <option value="first_name" selected>Имя</option>
-                            <option value="last_name">Фамилия</option>
-                            <option value="username">Логин</option>
-                        </select>
-                    </p>
-                    <p><input type="submit" name="submit" value="submit"/></p>
-                </form>
+
+            <form method="get" action="">
+                <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-first-name">Имя</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-first-name" class="txt-box user-txt-box" type="text" value="{{ first_name }}" name="first-name"/>
+                    </div>
+                </div>
+                <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-last-name">Фамилия</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-last-name" class="txt-box user-txt-box" type="text" value="{{ last_name }}" name="last-name"/>
+                    </div>
+                </div>
+                <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-login">Логин</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-login" class="txt-box user-txt-box" type="text" value="{{ login }}" name="login"/>
+                    </div>
+                </div>
+                <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-email">Email</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-email" class="txt-box user-txt-box" type="text" value="{{ email }}" name="email"/>
+                    </div>
+                </div>
+                <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-address">Адрес доставки</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-address" class="txt-box user-txt-box" type="text" value="{{ address }}" name="address"/>
+                    </div>
+                </div>
+                <input class="red-btn user-filter-btn wo-padding-top" type="submit" value="Фильтровать">
+            </form>
+
                 <div class="users-list-content-table">
 
                         <div class="users-list-table-row">

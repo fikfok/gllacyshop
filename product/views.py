@@ -64,7 +64,7 @@ class ProductsUpdateView(UpdateView):
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, request, *args, **kwargs):
-        return super(UpdateView, self).dispatch(*args, **kwargs)
+        return super(UpdateView, self).dispatch(request, *args, **kwargs)
 
 class ProductsCreateView(CreateView):
     model = Product
@@ -82,7 +82,7 @@ class ProductsCreateView(CreateView):
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, request, *args, **kwargs):
-        return super(CreateView, self).dispatch(*args, **kwargs)
+        return super(CreateView, self).dispatch(request, *args, **kwargs)
 
 
 class ProductsDeleteView(DeleteView):
@@ -91,5 +91,5 @@ class ProductsDeleteView(DeleteView):
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, request, *args, **kwargs):
-        return super(DeleteView, self).dispatch(*args, **kwargs)
+        return super(DeleteView, self).dispatch(request, *args, **kwargs)
 
