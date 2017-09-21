@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',
     'adminapp',
     'product',
+    'user',
 ]
 
 MIDDLEWARE = [

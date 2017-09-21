@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 import home.views as hm
 import adminapp.views as adm
 import product.views as pr
-# import user.views as usr
+import user.views as usr
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,7 +32,7 @@ urlpatterns += [
     url(r'^admin/products/update/(?P<pk>\d+)/$', pr.ProductsUpdateView.as_view(), name='products_update'),
     url(r'^admin/products/create/$', pr.ProductsCreateView.as_view(), name="products_create"),
     url(r'^admin/products/delete/(?P<pk>\d+)/$', pr.ProductsDeleteView.as_view(), name="products_delete"),
-    url(r'^admin/users/$', pr.UsersListView.as_view(), name="users"),
+    url(r'^admin/users/$', usr.UsersListView.as_view(), name="users"),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
 ]

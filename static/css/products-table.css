@@ -1,0 +1,97 @@
+/*------------------------------------------------*/
+/*Таблица вывода всех продуктов*/
+.products-list {
+    width: 890px;
+    background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+    padding-top: 21px;
+    padding-right: 13px;
+    padding-bottom: 21px;
+    padding-left: 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.products-list-content-table {
+    display: table;
+    table-layout: fixed;
+    font-size: 13px;
+    line-height: 1.23em;
+    margin-bottom: 18px;
+    width: 100%
+}
+
+.products-list-table-row {
+    display: table-row;
+}
+
+.products-list-table-cel {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+    border-bottom: 1px solid #838380;
+}
+
+.products-list-table-cel:nth-child(1) {
+    padding-top: 5px;
+    width: 34%;
+}
+
+.products-list-table-cel:nth-child(2) {
+    width: 26%;
+}
+
+.products-list-table-cel:nth-child(3) {
+    width: 10%;
+}
+
+.products-list-table-cel:nth-child(4) {
+    width: 17%;
+}
+
+.products-list-table-cel:nth-child(5) {
+    width: 13%;
+}
+
+.wo-padding-top {
+    padding-top: 0px;
+}
+/*------------------------------------------------*/
+
+
+/*------------------------------------------------*/
+/*Таблица правки продукта*/
+.products-update-table-cel {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 30px;
+}
+
+.fixed-trextarea {
+    width: 100%;
+    rows: 2;
+    resize: none;
+}
+
+.products-update-table-cel:nth-child(1) {
+    width: 25%;
+    text-align: right;
+}
+
+.products-update-table-cel:nth-child(2) {
+    padding-top: 5px;
+    width: 75%;
+}
+
+.product-update-photo {
+    display: inline-block;
+}
+
+.product-update-photo img {
+    border-radius: 50%;
+    vertical-align: middle;
+}
+/*------------------------------------------------*/

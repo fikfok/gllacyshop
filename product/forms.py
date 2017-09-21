@@ -2,13 +2,6 @@ from django import forms
 from .models import Product
 
 class ProductEditForm(forms.ModelForm):
-
-    """
-    Форма для обновления данных пользователей. Нужна только для того, чтобы не
-    видеть постоянных ошибок "Не заполнено поле password" при обновлении данных
-    пользователя.
-    """
-
     class Meta:
         model = Product
         fields = ['name', 'price', 'is_hit', 'is_new', 'category_id', 'photo']

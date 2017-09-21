@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% load my_tags %}
+
+{% block content %}
+<main class="main-container">
+
+    <div class="center-container">
+
+        <div class="main-container-header clearfix">
+            <div class="breadcrumbs">
+                <ul class="breadcrumbs-links">
+                    <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
+                    <li><span class="breadcumbs-links-item">Пользователи</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="catalog">
+            <div class="users-list">
+                <form method="get" action="">
+                    <p>Filter: <input type="text" value="filter" name="filter-value"/></p>
+                    <p>order_by:
+                        <select id="filter-field-name" name="filter-field-name" title="Поле фильтрации">
+                            <option value="first_name" selected>Имя</option>
+                            <option value="last_name">Фамилия</option>
+                            <option value="username">Логин</option>
+                        </select>
+                    </p>
+                    <p><input type="submit" name="submit" value="submit"/></p>
+                </form>
+                <div class="users-list-content-table">
+
+                        <div class="users-list-table-row">
+                            <div class="users-list-table-cel">
+                                Имя
+                            </div>
+                            <div class="users-list-table-cel">
+                                Фамилия
+                            </div>
+                            <div class="users-list-table-cel">
+                                Логин
+                            </div>
+                            <div class="users-list-table-cel">
+                                E-mail
+                            </div>
+                            <div class="users-list-table-cel">
+                                Администратор
+                            </div>
+                            <div class="users-list-table-cel">
+                                Адрес доставки
+                            </div>
+                        </div>
+
+                    {% for item in object_list %}
+                        <div class="users-list-table-row">
+                            <div class="users-list-table-cel">
+                                {{ item.first_name }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.last_name }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.username }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.email }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {% if item.is_superuser %}да{% else %}нет{% endif %}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.address }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            <div class="paginator clearfix">
+                <ul class="paginator-links">
+
+                    {% if page_obj.has_previous %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast" href="?page={{ page_obj.previous_page_number }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+
+                    {% for page_num in paginator.num_pages|my_range %}
+                        <li><a class="paginator-btn--contrast paginator-btn--contrast {% if page_num == page_obj.number %}paginator-btn--active--contrast{% endif %}" {% if page_num != page_obj.number %}href="?page={{ page_num }}"{% endif %}>{{ page_num }}</a></li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast" href="?page={{ page_obj.next_page_number }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+        </section>
+
+    </div>
+</main>
+
+{% endblock %}

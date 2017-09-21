@@ -1,0 +1,64 @@
+/*------------------------------------------------*/
+/*Таблица вывода всех пользователей*/
+.users-list {
+    width: 890px;
+    background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+    padding-top: 21px;
+    padding-right: 13px;
+    padding-bottom: 21px;
+    padding-left: 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.users-list-content-table {
+    display: table;
+    table-layout: fixed;
+    font-size: 13px;
+    line-height: 1.23em;
+    margin-bottom: 18px;
+    width: 100%
+}
+
+.users-list-table-row {
+    display: table-row;
+}
+
+.users-list-table-cel {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+    border-bottom: 1px solid #838380;
+}
+
+.users-list-table-cel {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 10%;
+}
+
+/*.users-list-table-cel:nth-child(2) {*/
+    /*width: 26%;*/
+/*}*/
+
+/*.users-list-table-cel:nth-child(3) {*/
+    /*width: 10%;*/
+/*}*/
+
+/*.users-list-table-cel:nth-child(4) {*/
+    /*width: 17%;*/
+/*}*/
+
+.users-list-table-cel:nth-child(5) {
+    text-align: center;
+}
+
+.users-list-table-cel:nth-child(6) {
+    width: 20%;
+}
+/*------------------------------------------------*/
+
