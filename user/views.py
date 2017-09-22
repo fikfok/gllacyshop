@@ -3,14 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import redirect
-# from .models import UserShippingAddress
-from django.db.models import Prefetch
-ITEMS_IN_PAGES = 3
+from django.shortcuts import redirect, get_object_or_404
+from .forms import UserRegistrationForm, UserChangeForm
+from django.http import Http404, JsonResponse
+from django.template import loader
+from django.template.context_processors import csrf
 
-def get_page_num(pk):
-    current_prod_rank = User.objects.filter(pk__lte=int(pk)).count()
-    return current_prod_rank // ITEMS_IN_PAGES + int(bool(((current_prod_rank / ITEMS_IN_PAGES) % 1)))
+ITEMS_IN_PAGES = 5
 
 class UsersListView(ListView):
     model = User
@@ -37,9 +36,6 @@ class UsersListView(ListView):
             qs = qs.filter(address__address__contains=self.request.GET.get('address'))
         return qs
 
-
-
-
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, *args, **kwargs):
         usr_list = User.objects.all()
@@ -55,3 +51,35 @@ class UsersListView(ListView):
             self.kwargs['page'] = 1
             return redirect('users')
         return super(ListView, self).dispatch(*args, **kwargs)
+
+def create_user(request, user_id=None):
+    """
+    Создает Пользователя(User)
+    Или редактирует существующего, если указан user_id
+    """
+    # if request.is_ajax():
+    #     if not user_id:
+    #         form = UserRegistrationForm(request.POST)
+    #     else:
+    #         user = get_object_or_404(User, id=user_id)
+    #         form = UserChangeForm(request.POST, instance=user)
+    #
+    #     if form.is_valid():
+    #         form.save()
+    #         users = User.objects.all()
+    #         html = loader.render_to_string('inc_create_user.html', {'users': users}, request=request)
+    #         data = {'errors': False, 'html': html}
+    #         return JsonResponse(data)
+    #     else:
+    #         errors = user.errors.as_json()
+    #         return JsonResponse({'errors': errors})
+    # raise Http404
+    if request.is_ajax() and request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        context = {'form': user_form}
+        context.update(csrf(request))
+        html = loader.render_to_string('inc_create_user.html', context)
+        data = {'errors': False, 'html': html}
+        print(data)
+        return JsonResponse(data)
+

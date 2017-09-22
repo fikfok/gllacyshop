@@ -14,7 +14,6 @@ def login(request):
             authPanel = loader.render_to_string('inc_authrorize.html', request=request)
             data = {'authorizeStatus': 'ok', 'userPanel': userPanel, 'authPanel': authPanel}
         else:
-
             data = {'authorizeStatus': 'error'}
     return JsonResponse(data)
 

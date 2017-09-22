@@ -35,6 +35,7 @@ urlpatterns += [
     url(r'^admin/users/$', usr.UsersListView.as_view(), name="users"),
     url(r'^user/login/$', adm.login, name='login'),
     url(r'^user/logout/$', adm.logout, name='logout'),
+    url(r'^create/user/(\d*)/$', usr.create_user)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
