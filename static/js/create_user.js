@@ -47,8 +47,13 @@ window.auth = (function () {
         '/create/user/',
         TIMEOUT,
         function (response) {
-          createUserForm.innerHTML = response.html;
-          console.log(response.html);
+          if (response.status === 'ok') {
+            console.log('OK')
+            createUserDialog.classList.add('hideme');
+          } else {
+            console.log('ER')
+            createUserForm.innerHTML = response.html;
+          }
         },
         function () {
           console.log('ERROR');

@@ -130,4 +130,11 @@
 .user-field-input {
     width: 250px;
 }
+
+.create-user-error {
+    list-style: none;
+    font-size: 14px;
+    color: #ff0000;
+    margin-bottom: 10px;
+}
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect, get_object_or_404
-from .forms import UserRegistrationForm, UserChangeForm
+from .forms import UserRegistrationForm
 from django.http import Http404, JsonResponse
 from django.template import loader
 from django.template.context_processors import csrf
@@ -53,36 +53,15 @@ class UsersListView(ListView):
         return super(ListView, self).dispatch(*args, **kwargs)
 
 def create_user(request):
-    """
-    Создает Пользователя(User)
-    Или редактирует существующего, если указан user_id
-    """
-    # if request.is_ajax():
-    #     if not user_id:
-    #         form = UserRegistrationForm(request.POST)
-    #     else:
-    #         user = get_object_or_404(User, id=user_id)
-    #         form = UserChangeForm(request.POST, instance=user)
-    #
-    #     if form.is_valid():
-    #         form.save()
-    #         users = User.objects.all()
-    #         html = loader.render_to_string('inc_create_user.html', {'users': users}, request=request)
-    #         data = {'errors': False, 'html': html}
-    #         return JsonResponse(data)
-    #     else:
-    #         errors = user.errors.as_json()
-    #         return JsonResponse({'errors': errors})
-    # raise Http404
     if request.is_ajax() and request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-
-        print(user_form.errors)
-
-        context = {'registration_form': user_form}
-        context.update(csrf(request))
-        html = loader.render_to_string('inc_create_user.html', context)
-        data = {'errors': False, 'html': html}
-        # print(data)
+        if user_form.is_valid():
+            user_form.save()
+            data = {'status': 'ok'}
+        else:
+            context = {'registration_form': user_form}
+            context.update(csrf(request))
+            html = loader.render_to_string('inc_create_user.html', context)
+            data = {'status': 'errors', 'html': html}
         return JsonResponse(data)
 

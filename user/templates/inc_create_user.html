@@ -11,10 +11,10 @@
                 <td>
                     <div>
                         <ul>
-                            {% for error in field.errors %}
-                                <li class="error">errors:{{ error }}</li>
-                            {% endfor %}
                             {{ field|addcss:'txt-box user-field-input' }}
+                            {% for error in field.errors %}
+                                <li class="create-user-error">{{ error }}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </td>
