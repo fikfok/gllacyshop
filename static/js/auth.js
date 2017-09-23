@@ -17,9 +17,8 @@ window.auth = (function () {
 
   /**
    * Открытие диалогового окна для авторизации
-   * @param {object} evt - данные о событии
    */
-  var openAuthDialog = function (evt) {
+  var openAuthDialog = function () {
     if (!authorizeForm.classList.contains('user_is_authenticated')) {
       authorizeDialog = document.querySelector('.authorize-form');
       utils.doOpen(authorizeDialog);

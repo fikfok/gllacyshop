@@ -177,8 +177,15 @@
             </div>
         </section>
 
-    {% include "inc_create_user.html" %}
-
+        <section class="create-user hideme">
+        <div class="create-user-container clearfix">
+            <button class="create-user-form-close-btn" type="button" title="Закрыть">Закрыть</button>
+            <p class="create-user-title">
+                Регистрация
+            </p>
+            {% include "inc_create_user.html" %}
+            </div>
+        </section>
     </div>
 </main>
 {% endblock %}

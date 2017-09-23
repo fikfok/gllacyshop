@@ -52,7 +52,7 @@ class UsersListView(ListView):
             return redirect('users')
         return super(ListView, self).dispatch(*args, **kwargs)
 
-def create_user(request, user_id=None):
+def create_user(request):
     """
     Создает Пользователя(User)
     Или редактирует существующего, если указан user_id
@@ -76,10 +76,13 @@ def create_user(request, user_id=None):
     # raise Http404
     if request.is_ajax() and request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-        context = {'form': user_form}
+
+        print(user_form.errors)
+
+        context = {'registration_form': user_form}
         context.update(csrf(request))
         html = loader.render_to_string('inc_create_user.html', context)
         data = {'errors': False, 'html': html}
-        print(data)
+        # print(data)
         return JsonResponse(data)
 
