@@ -57,6 +57,11 @@ window.doShopping = (function () {
     cartBtn.innerText = title;
   };
 
+  var refreshCartBlock = function () {
+
+  };
+
+
   addToCartButtons.forEach(function (item) {
     item.addEventListener('click', utils.eventHandler(addProduct));
   }

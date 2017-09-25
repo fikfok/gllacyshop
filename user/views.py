@@ -9,7 +9,7 @@ from django.http import Http404, JsonResponse
 from django.template import loader
 from django.template.context_processors import csrf
 
-ITEMS_IN_PAGES = 1
+ITEMS_IN_PAGES = 5
 
 class UsersListView(ListView):
     model = User
