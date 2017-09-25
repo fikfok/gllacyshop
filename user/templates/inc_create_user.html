@@ -1,26 +1,22 @@
 {% load my_tags %}
 
-<form class="create-user-form clearfix">
-    {% csrf_token %}
-    <table>
-        {% for field in registration_form %}
-            <tr>
-                <td>
-                    {{ field.label_tag }}
-                </td>
-                <td>
-                    <div>
-                        <ul>
-                            {{ field|addcss:'txt-box user-field-input' }}
-                            {% for error in field.errors %}
-                                <li class="create-user-error">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    <button class="red-btn create-user-send-btn" type="submit" name="create-user-send-btn">Зарегистрироваться</button>
-</form>
+{% csrf_token %}
+<table>
+    {% for field in registration_form %}
+        <tr>
+            <td>
+                {{ field.label_tag }}
+            </td>
+            <td>
+                <div>
+                    <ul>
+                        {{ field|addcss:'txt-box user-field-input' }}
+                        {% for error in field.errors %}
+                            <li class="create-user-error">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

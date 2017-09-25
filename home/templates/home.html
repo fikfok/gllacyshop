@@ -74,21 +74,7 @@
 
         <div class="hits-group clearfix">
             {% for item in object_list %}
-            <article class="hit-item">
-                <div class="hit-item-photo">
-                    <a href="#"><img class="item-image" src="{{ media_url }}{{ item.photo }}" width="267" height="267" alt="{{ item.name }}"></a>
-                    <div class="hit-item-corner-badge"></div>
-                </div>
-                <p class="hit-price">
-                    <span class="hit-price-value">{{ item.price }}</span>
-                    <span class="hit-price-currency"></span>
-                    <span class="hit-price-for">/кг</span>
-                </p>
-                <p class="hit-item-link-container">
-                    <a class="hit-item-link" href="#"><span>{{ item.name }}</span></a>
-                </p>
-                <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
-            </article>
+            {% include 'inc_single_item.html' %}
             {% endfor %}
         </div>
 
@@ -183,7 +169,10 @@
             <p class="create-user-title">
                 Регистрация
             </p>
-            {% include "inc_create_user.html" %}
+            <form class="create-user-form clearfix">
+                {% include "inc_create_user.html" %}
+                <button class="red-btn create-user-send-btn" type="submit" name="create-user-send-btn">Зарегистрироваться</button>
+            </form>
             </div>
         </section>
     </div>

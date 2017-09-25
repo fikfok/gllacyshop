@@ -9,7 +9,7 @@ from django.http import Http404, JsonResponse
 from django.template import loader
 from django.template.context_processors import csrf
 
-ITEMS_IN_PAGES = 5
+ITEMS_IN_PAGES = 1
 
 class UsersListView(ListView):
     model = User
@@ -55,13 +55,17 @@ class UsersListView(ListView):
 def create_user(request):
     if request.is_ajax() and request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
+        status = ''
         if user_form.is_valid():
             user_form.save()
-            data = {'status': 'ok'}
+            status = 'ok'
+            new_form = UserRegistrationForm()
+            context = {'registration_form': new_form}
         else:
+            status = 'errors'
             context = {'registration_form': user_form}
-            context.update(csrf(request))
-            html = loader.render_to_string('inc_create_user.html', context)
-            data = {'status': 'errors', 'html': html}
+        context.update(csrf(request))
+        html = loader.render_to_string('inc_create_user.html', context)
+        data = {'status': status, 'html': html}
         return JsonResponse(data)
 

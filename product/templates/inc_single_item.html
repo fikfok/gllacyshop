@@ -1,0 +1,17 @@
+<article class="hit-item">
+    <div class="hit-item-photo">
+        <a href="#"><img class="item-image" src="{{ media_url }}{{ item.photo }}" width="267" height="267" alt="{{ item.name }}"></a>
+        <div class="hit-item-corner-badge"></div>
+    </div>
+    <p class="hit-price">
+        <span class="hit-price-value">{{ item.price }}</span>
+        <span class="hit-price-currency"></span>
+        <span class="hit-price-for">/кг</span>
+    </p>
+    <p class="hit-item-link-container">
+        <a class="hit-item-link" href="#"><span>{{ item.name }}</span></a>
+    </p>
+    <a class="red-btn fast-view-btn" href="#">Быстрый просмотр</a>
+    <a class="red-btn to-cart" href="" data-prod-id="{{ item.pk }}" data-prod-name="{{ item.name }}" data-prod-price="{{ item.price }}">В корзину</a>
+    <input class="txt-box product-count-to-cart" type="number" value="1"/>
+</article>

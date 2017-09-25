@@ -56,7 +56,7 @@
                         {% include "inc_authrorize.html" %}
 
                         <div class="navigation-right-menu-cart">
-                            <a class="rounded-btn cart-btn">Пусто</a>
+                            <a id="cart-btn" class="rounded-btn cart-btn-empty">Пусто</a>
                         </div>
                     </section>
 
@@ -116,5 +116,7 @@
         {% if not user.is_authenticated %}
             <script src="{% static "js/create_user.js" %}"></script>
         {% endif %}
+        <script src="{% static "js/cart.js" %}"></script>
+        <script src="{% static "js/do_shopping.js" %}"></script>
     </body>
 </html>

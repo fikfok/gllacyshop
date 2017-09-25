@@ -104,17 +104,17 @@
                 <ul class="paginator-links">
 
                     {% if page_obj.has_previous %}
-                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast" href="?page={{ page_obj.previous_page_number }}"></a></li>
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast" href="?page={{ page_obj.previous_page_number }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"></a></li>
                     {% else %}
                         <li><a class="paginator-btn-arrow--contrast left-arrow--contrast arrow-disabled--contrast"></a></li>
                     {% endif %}
 
                     {% for page_num in paginator.num_pages|my_range %}
-                        <li><a class="paginator-btn--contrast paginator-btn--contrast {% if page_num == page_obj.number %}paginator-btn--active--contrast{% endif %}" {% if page_num != page_obj.number %}href="?page={{ page_num }}"{% endif %}>{{ page_num }}</a></li>
+                        <li><a class="paginator-btn--contrast paginator-btn--contrast {% if page_num == page_obj.number %}paginator-btn--active--contrast{% endif %}" {% if page_num != page_obj.number %}href="?page={{ page_num }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"{% endif %}>{{ page_num }}</a></li>
                     {% endfor %}
 
                     {% if page_obj.has_next %}
-                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast" href="?page={{ page_obj.next_page_number }}"></a></li>
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast" href="?page={{ page_obj.next_page_number }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"></a></li>
                     {% else %}
                         <li><a class="paginator-btn-arrow--contrast right-arrow--contrast arrow-disabled--contrast"></a></li>
                     {% endif %}

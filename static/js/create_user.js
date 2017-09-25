@@ -1,8 +1,7 @@
 'use strict';
 
 window.auth = (function () {
-  var SERVER_URL_LOGIN = '/user/login/';
-  var SERVER_URL_LOGOUT = '/user/logout/';
+  var SERVER_URL_CREATE_USER = '/create/user/';
   var TIMEOUT = 15000;
   var RESPONSE_TYPE = 'json';
 
@@ -38,62 +37,24 @@ window.auth = (function () {
 
   createUserSendBtn.addEventListener('click', function (evt) {
     evt.preventDefault();
-
     var loginData = new FormData(createUserForm);
 
     window.backend.ajax(
         'POST',
         RESPONSE_TYPE,
-        '/create/user/',
+        SERVER_URL_CREATE_USER,
         TIMEOUT,
         function (response) {
           if (response.status === 'ok') {
-            console.log('OK')
+            createUserForm.reset();
             createUserDialog.classList.add('hideme');
-          } else {
-            console.log('ER')
-            createUserForm.innerHTML = response.html;
           }
+          createUserForm.querySelector('table').innerHTML = response.html;
         },
         function () {
           console.log('ERROR');
         },
         loginData
     );
-
   });
-
-
-  // createUserBtn.addEventListener('submit', function (evt) {
-  //   evt.preventDefault();
-  //
-  //   var loginData = new FormData(authorizeForm);
-  //
-  //   window.backend.ajax(
-  //       'POST',
-  //       RESPONSE_TYPE,
-  //       SERVER_URL_LOGIN,
-  //       TIMEOUT,
-  //       function (response) {
-  //         if (response.authorizeStatus.toLowerCase() === 'ok') {
-  //           authorizeDialog.classList.remove('authorize-form-error');
-  //           authorizeDialogErrorMsg.classList.add('hideme');
-  //           userPanelInHeaderMenu.innerHTML = response.userPanel;
-  //           authorizeForm.innerHTML = response.authPanel;
-  //           authorizeForm.classList.add('user_is_authenticated');
-  //           authorizeDialog.classList.add('hideme');
-  //           logoutBtnBehaivor();
-  //         } else {
-  //           authorizeDialog.classList.add('authorize-form-error');
-  //           authorizeDialogErrorMsg.classList.remove('hideme');
-  //         }
-  //       },
-  //       function () {
-  //         console.log('ERROR');
-  //       },
-  //       loginData
-  //   );
-  // });
-
-
 })();
