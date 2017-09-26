@@ -1,15 +1,18 @@
 'use strict';
 
 window.doShopping = (function () {
-
+  var rightMenuCart = document.querySelector('.navigation-right-menu-cart');
   var addToCartButtons = document.querySelectorAll('.to-cart');
   var utils = window.utils;
   var cart = new window.Cart();
-  var cartBtn = document.querySelector('#cart-btn');
+  var cartBtn = rightMenuCart.querySelector('#cart-btn');
+  var cartContainer = rightMenuCart.querySelector('.cart-content');
+  var cartTable = cartContainer.querySelector('.cart-content-table');
+  var templateCartRow = document.querySelector('#template-cart-row');
 
   var addProduct = function (evt) {
     evt.preventDefault();
-    cart.addProduct(evt.target.dataset.prodId, evt.target.dataset.prodName, evt.target.closest('.hit-item').querySelector('.product-count-to-cart').value, evt.target.dataset.prodPrice);
+    cart.addProduct(evt.target.dataset.prodId, evt.target.dataset.prodName, evt.target.closest('.hit-item').querySelector('.product-count-to-cart').value, evt.target.dataset.prodPrice, evt.target.dataset.photoSrc);
     renderCartTitle();
   };
 
@@ -55,17 +58,61 @@ window.doShopping = (function () {
       title = itemsCount + suffix;
     }
     cartBtn.innerText = title;
+    refreshCartBlock();
   };
 
   var refreshCartBlock = function () {
 
-  };
+    while (cartTable.firstChild) {
+      cartTable.removeChild(cartTable.firstChild);
+    }
 
+    cart.getArrayItems().forEach(
+        function (item) {
+          var newRow = templateCartRow.cloneNode(true).content;
+          newRow.querySelector('.cart-delete-item').dataset.prodId = item.key;
+          newRow.querySelector('.cart-icon-item').src = newRow.querySelector('.cart-icon-item').getAttribute('src') + item.value.photoSrc;
+          newRow.querySelector('.item-in-cart').innerText = item.value.name;
+          newRow.querySelector('.item-in-cart-weight').innerText = item.value.count + ' кг х ';
+          newRow.querySelector('.item-in-cart-price').innerText = item.value.price + ' руб.';
+          newRow.querySelector('.item-in-cart-total').innerText = item.value.count * item.value.price + ' руб.';
+          cartTable.appendChild(newRow);
+        }
+    );
+    cartTable.querySelectorAll('.cart-delete-item').forEach(function (item) {
+      item.addEventListener('click', utils.eventHandler(removeItemFromCart));
+    });
+
+  };
 
   addToCartButtons.forEach(function (item) {
     item.addEventListener('click', utils.eventHandler(addProduct));
   }
   );
+
+  var removeItemFromCart = function (evt) {
+    evt.preventDefault();
+    cart.deleteItem(evt.target.dataset.prodId);
+    if (cart.getItemsCount() === 0) {
+      closeCartContent();
+    }
+    renderCartTitle();
+    evt.target.closest('.cart-table-row').remove();
+  };
+
+  var openCartContent = function () {
+    if (cart.getItemsCount() > 0) {
+      utils.doOpen(cartContainer);
+    }
+  };
+
+  var closeCartContent = function () {
+    utils.doClose(cartContainer);
+  };
+
+
+  rightMenuCart.addEventListener('mouseenter', utils.eventHandler(openCartContent));
+  rightMenuCart.addEventListener('mouseleave', utils.eventHandler(closeCartContent));
 
   renderCartTitle();
 })();

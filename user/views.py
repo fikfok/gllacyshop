@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect
 from .forms import UserRegistrationForm
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse
 from django.template import loader
 from django.template.context_processors import csrf
+from gllacyshop.settings import MEDIA_URL
+
 
 ITEMS_IN_PAGES = 5
 
@@ -24,6 +26,7 @@ class UsersListView(ListView):
         context['login'] = self.request.GET.get('login', '')
         context['email'] = self.request.GET.get('email', '')
         context['address'] = self.request.GET.get('address', '')
+        context['media_url'] = MEDIA_URL
         return context
 
     def get_queryset(self):

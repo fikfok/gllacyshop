@@ -506,9 +506,9 @@ body {
     background-color: #f7f6f3;
 }
 
-.navigation-right-menu-cart:hover > .cart-content {
-    display: block;
-}
+/*.navigation-right-menu-cart:hover > .cart-content {*/
+    /*display: block;*/
+/*}*/
 
 .navigation-right-menu-cart {
     position: relative;
@@ -519,7 +519,6 @@ body {
 
 .cart-content {
     position: absolute;
-    display: none;
     width: 540px;
     left: -423px;
     top: 36px;

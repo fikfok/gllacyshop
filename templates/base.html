@@ -57,6 +57,15 @@
 
                         <div class="navigation-right-menu-cart">
                             <a id="cart-btn" class="rounded-btn cart-btn-empty">Пусто</a>
+                            <div class="cart-content hideme">
+                                <div class="cart-content-table">
+                                    {% include 'inc_template_cart_row.html' %}
+                                </div>
+                                <div class="cart-footer">
+                                    <p class="cart-total-price"></p>
+                                    <a class="red-btn make-order-btn" href="">Оформить заказ</a>
+                                </div>
+                            </div>
                         </div>
                     </section>
 

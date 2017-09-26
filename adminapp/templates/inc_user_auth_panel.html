@@ -2,8 +2,8 @@
     <a class="main-menu-btn {% if 'products' in current_site or 'users' in current_site %}main-menu-btn-active{% endif %}" href="#">Панель управления</a>
     <ul class="main-sub-menu">
         <li><a class="main-sub-menu-item" href="#">Заказы</a></li>
-        <li><a class="main-sub-menu-item" href="/admin/users/">Пользователи</a></li>
-        <li><a class="main-sub-menu-item" href="/admin/products/">Товары</a></li>
+        <li><a class="main-sub-menu-item {% if current_site == 'users_list' %}main-sub-menu-item-active{% endif %}" href="/admin/users/">Пользователи</a></li>
+        <li><a class="main-sub-menu-item {% if current_site == 'products_list' %}main-sub-menu-item-active{% endif %}" href="/admin/products/">Товары</a></li>
         <li><a class="main-sub-menu-item" href="#">Отзывы</a></li>
     </ul>
 {% elif user.is_authenticated %}
