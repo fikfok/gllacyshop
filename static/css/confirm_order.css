@@ -1,4 +1,5 @@
 .confirm-order-btn {
+    float: left;
     text-align: center;
     vertical-align: bottom;
     padding-left: 20px;
@@ -22,6 +23,7 @@
 
 .confirm-order-attention {
     display: inline-block;
+    float: left;
     height: 46px;
     padding-top: 15px;
     box-sizing: border-box;
