@@ -59,6 +59,7 @@ window.doShopping = (function () {
     }
     cartBtn.innerText = title;
     refreshCartBlock();
+    rightMenuCart.querySelector('.cart-total-price').innerText = 'Итого: ' + cart.getTotalOrderPrice() + ' руб.';
   };
 
   var refreshCartBlock = function () {
@@ -75,7 +76,7 @@ window.doShopping = (function () {
           newRow.querySelector('.item-in-cart').innerText = item.value.name;
           newRow.querySelector('.item-in-cart-weight').innerText = item.value.count + ' кг х ';
           newRow.querySelector('.item-in-cart-price').innerText = item.value.price + ' руб.';
-          newRow.querySelector('.item-in-cart-total').innerText = item.value.count * item.value.price + ' руб.';
+          newRow.querySelector('.item-in-cart-total').innerText = item.value.totalPrice + ' руб.';
           cartTable.appendChild(newRow);
         }
     );
@@ -110,9 +111,12 @@ window.doShopping = (function () {
     utils.doClose(cartContainer);
   };
 
-
   rightMenuCart.addEventListener('mouseenter', utils.eventHandler(openCartContent));
   rightMenuCart.addEventListener('mouseleave', utils.eventHandler(closeCartContent));
 
   renderCartTitle();
+
+  return {
+    renderCartTitle: renderCartTitle
+  };
 })();

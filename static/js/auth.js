@@ -92,6 +92,7 @@ window.auth = (function () {
             authorizeForm.classList.add('user_is_authenticated');
             authorizeDialog.classList.add('hideme');
             logoutBtnBehaivor();
+            confirmOrderBtnBehaivor();
           } else {
             authorizeDialog.classList.add('authorize-form-error');
             authorizeDialogErrorMsg.classList.remove('hideme');
@@ -106,6 +107,7 @@ window.auth = (function () {
 
   var doLogout = function (evt) {
     var logoutBtn = authorizeForm.querySelector('.logout-btn');
+
     evt.preventDefault();
 
     window.backend.ajax(
@@ -132,6 +134,14 @@ window.auth = (function () {
     var logoutBtn = authorizeForm.querySelector('.logout-btn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', utils.eventHandler(doLogout));
+    }
+  };
+
+  var confirmOrderBtnBehaivor = function () {
+    var confirmOrderBtn = document.querySelector('.confirm-order-btn');
+    if (confirmOrderBtn) {
+      confirmOrderBtn.classList.remove('confirm-order-btn--not-auth');
+      confirmOrderBtn.parentElement.querySelector('.confirm-order-attention').remove();
     }
   };
 

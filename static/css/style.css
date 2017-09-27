@@ -406,7 +406,7 @@ body {
     height: 46px;
     /*padding: 13px 21px;*/
     text-align: center;
-    padding-top: 13px;
+    padding-top: 9px/*13*/;
     text-decoration: none;
     color: #ffffff;
     background: -moz-linear-gradient( 90deg, rgb(231,74,53) 0%, rgb(242,104,67) 100%);

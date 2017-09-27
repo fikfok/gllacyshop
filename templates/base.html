@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{% static "css/products-table.css" %}">
         <link rel="stylesheet" href="{% static "css/users-table.css" %}">
         <link rel="stylesheet" href="{% static "css/create-user.css" %}">
+        <link rel="stylesheet" href="{% static "css/confirm_order.css" %}">
     </head>
     <body class="{% if current_site == "home"%}home-site{% else %}other-site{% endif %}">
         <header class="main-header">
@@ -63,7 +64,7 @@
                                 </div>
                                 <div class="cart-footer">
                                     <p class="cart-total-price"></p>
-                                    <a class="red-btn make-order-btn" href="">Оформить заказ</a>
+                                    <a class="red-btn make-order-btn" href="/order/">Оформить заказ</a>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +76,19 @@
 
         {% block content %}
         {% endblock %}
+
+        <section class="create-user hideme">
+            <div class="create-user-container clearfix">
+                <button class="create-user-form-close-btn" type="button" title="Закрыть">Закрыть</button>
+                <p class="create-user-title">
+                    Регистрация
+                </p>
+                <form class="create-user-form clearfix">
+                    {% include "inc_create_user.html" %}
+                    <button class="red-btn create-user-send-btn" type="submit" name="create-user-send-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </section>
 
         <footer class="main-footer">
             <div class="center-container clearfix">
@@ -127,5 +141,9 @@
         {% endif %}
         <script src="{% static "js/cart.js" %}"></script>
         <script src="{% static "js/do_shopping.js" %}"></script>
+         {% if current_site == "confirm_order" %}
+            <script src="{% static "js/confirm_order.js" %}"></script>
+         {% endif %}
+
     </body>
 </html>

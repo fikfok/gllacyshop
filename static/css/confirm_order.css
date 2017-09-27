@@ -1,0 +1,140 @@
+.confirm-order-btn {
+    text-align: center;
+    vertical-align: bottom;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    font-size: 18px;
+    line-height: 1.33em;
+    font-weight: bold;
+}
+
+.confirm-order-btn--not-auth {
+    color: #000000;
+    background: -moz-linear-gradient(90deg, rgb(131, 131, 128) 0%, rgb(233, 233, 233) 100%);
+    background: -webkit-linear-gradient(90deg, rgb(131, 131, 128) 0%, rgb(233, 233, 233) 100%);
+    background: -ms-linear-gradient(90deg, rgb(131, 131, 128) 0%, rgb(233, 233, 233) 100%);
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(41, 41, 38, 0.64);
+    box-shadow: 0px 1px 2px 0px rgba(33, 10, 0, 0.64);
+    pointer-events: none;
+    cursor: default;
+}
+
+.confirm-order-attention {
+    display: inline-block;
+    height: 46px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.order-content {
+    width: 890px;
+    min-height: 540px;
+    background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+    padding-top: 21px;
+    padding-right: 13px;
+    padding-bottom: 21px;
+    padding-left: 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.order-content-table {
+    position: relative;
+    display: table;
+    font-size: 13px;
+    line-height: 1.23em;
+    margin-bottom: 18px;
+}
+
+.order-table-row {
+    display: table-row;
+    position: relative;
+}
+
+.order-table-cel {
+    position: relative;
+    display: table-cell;
+    max-width: 219px;
+    border-bottom: 1px solid #838380;
+}
+
+.order-table-cel:nth-child(1) {
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+.order-delete-item {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 40px;
+    margin-right: 10px;
+}
+
+.order-table-row .order-table-cel:nth-child(1) {
+    width: 25px;
+    padding-right: 12px;
+}
+
+.order-table-row .order-table-cel:nth-child(2) {
+    padding-right: 28px;
+}
+
+.order-table-row .order-table-cel {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0px;
+    vertical-align: middle;
+}
+
+.item-in-order,
+.item-in-order-weight,
+.item-in-order-price,
+.item-in-order-total {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.33em;
+    color: #323232;
+}
+
+.order-icon-item {
+    border-radius: 50%;
+}
+
+.item-in-order-weight {
+    margin-right: 4px;
+}
+
+.item-in-order-price {
+    margin-right: 27px;
+    color: #999999;
+}
+
+/*.order-content-table::after {*/
+    /*position: absolute;*/
+    /*display: block;*/
+    /*content: "";*/
+    /*bottom: -4px;*/
+    /*left: -1px;*/
+    /*width: 510px;*/
+    /*height: 1px;*/
+    /*background-color: #cacac7;*/
+/*}*/
+
+.order-footer {
+    text-align: right;
+}
+
+.order-total-price {
+    font-size: 15px;
+    line-height: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
