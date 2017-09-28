@@ -6,7 +6,6 @@ window.doShopping = (function () {
   var templateOrderRow = document.querySelector('#template-order-row');
   var cart = new window.Cart();
   var utils = window.utils;
-  var doShopping = window.doShopping;
 
   var showOrderContent = function () {
 
@@ -16,7 +15,7 @@ window.doShopping = (function () {
           newRow.querySelector('.red-btn').dataset.prodId = item.key;
           newRow.querySelector('.order-icon-item').src = newRow.querySelector('.order-icon-item').getAttribute('src') + item.value.photoSrc;
           newRow.querySelector('.item-in-order').innerText = item.value.name;
-          newRow.querySelector('.item-in-order-weight').innerText = item.value.count + ' кг х ';
+          newRow.querySelector('.product-count-confirm').value = item.value.count;
           newRow.querySelector('.item-in-order-price').innerText = item.value.price + ' руб.';
           newRow.querySelector('.item-in-order-total').innerText = item.value.totalPrice + ' руб.';
           orderTable.appendChild(newRow);
@@ -29,11 +28,19 @@ window.doShopping = (function () {
   };
 
   var removeItemFromCart = function (evt) {
-    evt.preventDefault();
-    cart.deleteItem(evt.target.dataset.prodId);
-    doShopping.renderCartTitle();
-    evt.target.closest('.order-table-row').remove();
+    if (Object.prototype.toString.call(evt) === '[object MouseEvent]') {
+      evt.preventDefault();
+      cart.deleteItem(evt.target.dataset.prodId);
+      evt.target.closest('.order-table-row').remove();
+    } else if (Object.prototype.toString.call(evt) === '[object CustomEvent]') {
+      var buttonToClick = orderTable.querySelector('a[data-prod-id="' + evt.detail + '"]');
+      if (buttonToClick) {
+        buttonToClick.closest('.order-table-row').remove();
+      }
+    }
   };
+
+  document.addEventListener('deleteProdFromCart', utils.eventHandler(removeItemFromCart));
 
   showOrderContent();
 })();

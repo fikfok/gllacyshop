@@ -28,6 +28,8 @@
         }
       });
     }
+    console.log('Added ' + this.array.length)
+    document.dispatchEvent(new CustomEvent('addProdIntoCart'));
   };
 
   Cart.prototype.getItemsCount = function () {
@@ -35,6 +37,9 @@
   };
 
   Cart.prototype.getArrayItems = function () {
+
+    console.log('now ' + this.array.length)
+
     return this.array;
   };
 
@@ -47,6 +52,7 @@
     }, -1);
     this.array.splice(indexToRemove, 1);
     localStorage.removeItem(prodId);
+    document.dispatchEvent(new CustomEvent('deleteProdFromCart', {'detail': prodId}));
   };
 
   Cart.prototype.getTotalOrderPrice = function () {
