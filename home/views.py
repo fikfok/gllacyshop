@@ -1,6 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.shortcuts import render_to_response
+from django.http import JsonResponse
 from product.models import Product
 from gllacyshop.settings import MEDIA_URL
 from user.forms import UserRegistrationForm
@@ -30,3 +31,6 @@ class CompleteOrder(TemplateView):
         context['current_site'] = 'confirm_order'
         context['registration_form'] = UserRegistrationForm()
         return context
+
+    def post(self, request, *args, **kwargs):
+        return JsonResponse({'status': 'OK'})

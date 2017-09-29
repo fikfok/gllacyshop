@@ -5,6 +5,7 @@ window.doShopping = (function () {
   var orderTable = orderContainer.querySelector('.order-content-table');
   var templateOrderRow = document.querySelector('#template-order-row');
   var cartContainer = document.querySelector('.cart-content');
+  var confirmBtn = orderContainer.querySelector('.confirm-order-btn');
   var cartTable = cartContainer.querySelector('.cart-content-table');
   var utils = window.utils;
 
@@ -14,7 +15,7 @@ window.doShopping = (function () {
     } else {
       orderContainer.querySelector('.order-total-price').innerText = 'Корзина пуста';
       orderContainer.querySelector('.order-total-price').style.textAlign = 'center';
-      orderContainer.querySelector('.confirm-order-btn').classList.add('hideme');
+      confirmBtn.classList.add('hideme');
     }
   };
 
@@ -83,6 +84,27 @@ window.doShopping = (function () {
 
   document.addEventListener('deleteProdFromCart', utils.eventHandler(removeItemFromCart));
   document.addEventListener('changeProdInCart', utils.eventHandler(changeItemInCart));
+
+  confirmBtn.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    var data = new FormData();
+    data.append('data', window.cart.getArrayItems());
+    data.append('csrfmiddlewaretoken', orderContainer.querySelector('input[name="csrfmiddlewaretoken"]').value);
+
+    window.backend.ajax(
+        'POST',
+        'json',
+        '/order/',
+        10000,
+        function (response) {
+          console.log('OK');
+        },
+        function () {
+          console.log('ERROR');
+        },
+        data
+      );
+  });
 
   showOrderContent();
 })();

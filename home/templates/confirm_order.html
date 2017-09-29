@@ -44,6 +44,7 @@
                 <p class="order-total-price">Итого: </p>
 
                 <div class="products-list-footer clearfix">
+                    {% csrf_token %}
                     <a class="red-btn confirm-order-btn {% if not user.is_authenticated %}confirm-order-btn--not-auth{% endif %}" href="#">Подтвердить</a>
                     {% if not user.is_authenticated %}
                     <p class="confirm-order-attention">Пожалуйста, авторизуйте или зарегестрируйтесь</p>
