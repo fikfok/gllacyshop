@@ -6,6 +6,8 @@ window.utils = (function () {
   var ESC_KEYCODE = 27;
   var DEBOUNCE_INTERVAL = 500;
   var lastTimeout = null;
+  var MIN_COUNT = 0.1;
+  var MAX_COUNT = 10;
 
   /**
    * Обработчик события
@@ -99,6 +101,27 @@ window.utils = (function () {
     element.classList.remove('hideme');
   };
 
+  var changeCountHandler = function (evt) {
+    if (evt.target.value < MIN_COUNT) {
+      evt.target.value = MIN_COUNT;
+    } else if (evt.target.value >= MAX_COUNT) {
+      evt.target.value = MAX_COUNT;
+    }
+  };
+  /**
+   * Синхронизация полей формы
+   * @param {string} eventType - тип события, по которуму будет синхронизация
+   * @param {object} masterElement - первый элемент, который является инициатором
+   * @param {object} slaveElement - второй элемент, состояние которого необходимо изменить
+   * @param {function} callback - функция сравнения элементов
+   */
+  var synchronizeFields = function (eventType, masterElement, slaveElement, callback) {
+    if (checkCallback(callback)) {
+      masterElement.addEventListener(eventType, function () {
+        callback(masterElement, slaveElement);
+      });
+    }
+  };
 
   return {
     eventHandler: eventHandler,
@@ -107,6 +130,8 @@ window.utils = (function () {
     checkCallback: checkCallback,
     debounce: debounce,
     doClose: doClose,
-    doOpen: doOpen
+    doOpen: doOpen,
+    changeCountHandler: changeCountHandler,
+    synchronizeFields: synchronizeFields
   };
 })();

@@ -26,7 +26,7 @@
                             <span class="item-in-order"></span>
                         </div>
                         <div class="order-table-cel">
-                            <input class="txt-box product-count-confirm" type="number" min="0.1" max="5" value="0.1" step="0.1" />
+                            <input class="txt-box product-count-confirm" type="number" min="0.1" max="10" value="0.1" step="0.1" data-prod-id=""/>
                             <span class="item-in-order-weight"> кг х </span>
                             <span class="item-in-order-price"></span>
                         </div>
@@ -41,7 +41,7 @@
 
             </div>
             <div class="order-footer">
-                <p class="order-total-price"></p>
+                <p class="order-total-price">Итого: </p>
 
                 <div class="products-list-footer clearfix">
                     <a class="red-btn confirm-order-btn {% if not user.is_authenticated %}confirm-order-btn--not-auth{% endif %}" href="#">Подтвердить</a>

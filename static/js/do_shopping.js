@@ -3,7 +3,6 @@
 window.doShopping = (function () {
   var rightMenuCart = document.querySelector('.navigation-right-menu-cart');
   var utils = window.utils;
-  var cart = new window.Cart();
   var cartBtn = rightMenuCart.querySelector('#cart-btn');
   var cartContainer = rightMenuCart.querySelector('.cart-content');
   var cartTable = cartContainer.querySelector('.cart-content-table');
@@ -17,7 +16,7 @@ window.doShopping = (function () {
   var renderCartTitle = function () {
     var suffix = '';
     var title = '';
-    var itemsCount = cart.getItemsCount();
+    var itemsCount = window.cart.getItemsCount();
 
     if (itemsCount === 0) {
       title = 'Пусто';
@@ -51,19 +50,15 @@ window.doShopping = (function () {
       title = itemsCount + suffix;
     }
     cartBtn.innerText = title;
-    rightMenuCart.querySelector('.cart-total-price').innerText = 'Итого: ' + cart.getTotalOrderPrice() + ' руб.';
+    rightMenuCart.querySelector('.cart-total-price').innerText = 'Итого: ' + window.cart.getTotalOrderPrice() + ' руб.';
   };
 
   var refreshCartBlock = function () {
-
-    console.log(cart.getArrayItems())
-
-
     while (cartTable.firstChild) {
       cartTable.removeChild(cartTable.firstChild);
     }
 
-    cart.getArrayItems().forEach(
+    window.cart.getArrayItems().forEach(
         function (item) {
           var newRow = templateCartRow.cloneNode(true).content;
           newRow.querySelector('.cart-delete-item').dataset.prodId = item.key;
@@ -84,8 +79,8 @@ window.doShopping = (function () {
   var removeItemFromCart = function (evt) {
     if (Object.prototype.toString.call(evt) === '[object MouseEvent]') {
       evt.preventDefault();
-      cart.deleteItem(evt.target.dataset.prodId);
-      if (cart.getItemsCount() === 0) {
+      window.cart.deleteItem(evt.target.dataset.prodId);
+      if (window.cart.getItemsCount() === 0) {
         closeCartContent();
       }
       evt.target.closest('.cart-table-row').remove();
@@ -100,7 +95,7 @@ window.doShopping = (function () {
   };
 
   var openCartContent = function () {
-    if (cart.getItemsCount() > 0) {
+    if (window.cart.getItemsCount() > 0) {
       utils.doOpen(cartContainer);
     }
   };
@@ -116,9 +111,6 @@ window.doShopping = (function () {
   refreshCartBlock();
   document.addEventListener('deleteProdFromCart', utils.eventHandler(removeItemFromCart));
   document.addEventListener('addProdIntoCart', function () {
-
-    console.log('FIRE!!!!')
-
     renderCartTitle();
     refreshCartBlock();
   });

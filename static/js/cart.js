@@ -2,6 +2,7 @@
 
 (function () {
   function Cart() {
+    this.MAX_COUNT = 10;
     this.array = [];
     for (var i = 0; i < localStorage.length; i++) {
       this.array.push({key: localStorage.key(i), value: JSON.parse(localStorage.getItem(localStorage.key(i)))});
@@ -17,8 +18,12 @@
       localStorage.setItem(prodId, JSON.stringify({'name': ProdName, 'count': count, 'price': price, 'totalPrice': totalPrice, 'photoSrc': photoSrc}));
       this.array.push({key: prodId, value: {'name': ProdName, 'count': count, 'price': price, 'totalPrice': totalPrice, 'photoSrc': photoSrc}});
     } else {
-      currentProd.count = Math.round((parseFloat(currentProd.count) + parseFloat(count)) * 10) / 10;
-      currentProd.totalPrice = Math.round((currentProd.count * parseFloat(price)) * 10) / 10;
+      var newCount = Math.round((parseFloat(currentProd.count) + parseFloat(count)) * 10) / 10;
+      if (newCount > this.MAX_COUNT) {
+        newCount = this.MAX_COUNT;
+      }
+      currentProd.count = newCount;
+      currentProd.totalPrice = Math.round((newCount * parseFloat(price)) * 10) / 10;
       localStorage.setItem(prodId, JSON.stringify(currentProd));
 
       this.array.forEach(function (item) {
@@ -28,7 +33,6 @@
         }
       });
     }
-    console.log('Added ' + this.array.length)
     document.dispatchEvent(new CustomEvent('addProdIntoCart'));
   };
 
@@ -37,9 +41,6 @@
   };
 
   Cart.prototype.getArrayItems = function () {
-
-    console.log('now ' + this.array.length)
-
     return this.array;
   };
 
@@ -62,5 +63,37 @@
     }, 0);
   };
 
-  window.Cart = Cart;
+  Cart.prototype.changeCount = function (prodId, count) {
+    var currentProd = JSON.parse(localStorage.getItem(prodId));
+    var newTotalPrice = 0;
+    if (currentProd !== null) {
+      var newCount = Math.round(parseFloat(count) * 10) / 10;
+      currentProd.count = newCount;
+      newTotalPrice = Math.round((newCount * parseFloat(currentProd.price)) * 10) / 10;
+      currentProd.totalPrice = newTotalPrice;
+      localStorage.setItem(prodId, JSON.stringify(currentProd));
+    }
+    this.array.forEach(function (item) {
+      if (item.key.toString() === prodId.toString()) {
+        item.value.count = newCount;
+        item.value.totalPrice = newTotalPrice;
+      }
+    });
+    document.dispatchEvent(new CustomEvent('changeProdInCart'));
+    return newTotalPrice;
+  };
+
+  Cart.prototype.getCountAndPrice = function (prodId) {
+    var currentProd = JSON.parse(localStorage.getItem(prodId));
+    var count = 0;
+    var totalPrice = 0;
+    if (currentProd !== null) {
+      count = currentProd.count;
+      totalPrice = currentProd.totalPrice;
+    }
+    return {count: count, totalPrice: totalPrice};
+  };
+
+  var cart = new Cart();
+  window.cart = cart;
 })();

@@ -4,18 +4,29 @@ window.doShopping = (function () {
   var orderContainer = document.querySelector('.order-content');
   var orderTable = orderContainer.querySelector('.order-content-table');
   var templateOrderRow = document.querySelector('#template-order-row');
-  var cart = new window.Cart();
+  var cartContainer = document.querySelector('.cart-content');
+  var cartTable = cartContainer.querySelector('.cart-content-table');
   var utils = window.utils;
 
-  var showOrderContent = function () {
+  var showOrderFooter = function () {
+    if (window.cart.getItemsCount() > 0) {
+      orderContainer.querySelector('.order-total-price').innerText = 'Итого: ' + window.cart.getTotalOrderPrice() + ' руб.';
+    } else {
+      orderContainer.querySelector('.order-total-price').innerText = 'Корзина пуста';
+      orderContainer.querySelector('.order-total-price').style.textAlign = 'center';
+      orderContainer.querySelector('.confirm-order-btn').classList.add('hideme');
+    }
+  };
 
-    cart.getArrayItems().forEach(
+  var showOrderContent = function () {
+    window.cart.getArrayItems().forEach(
         function (item) {
           var newRow = templateOrderRow.cloneNode(true).content;
           newRow.querySelector('.red-btn').dataset.prodId = item.key;
           newRow.querySelector('.order-icon-item').src = newRow.querySelector('.order-icon-item').getAttribute('src') + item.value.photoSrc;
           newRow.querySelector('.item-in-order').innerText = item.value.name;
           newRow.querySelector('.product-count-confirm').value = item.value.count;
+          newRow.querySelector('.product-count-confirm').dataset.prodId = item.key;
           newRow.querySelector('.item-in-order-price').innerText = item.value.price + ' руб.';
           newRow.querySelector('.item-in-order-total').innerText = item.value.totalPrice + ' руб.';
           orderTable.appendChild(newRow);
@@ -24,13 +35,19 @@ window.doShopping = (function () {
     orderTable.querySelectorAll('.order-delete-item').forEach(function (item) {
       item.addEventListener('click', utils.eventHandler(removeItemFromCart));
     });
-
+    orderTable.querySelectorAll('.product-count-confirm').forEach(function (item) {
+      item.addEventListener('change', utils.eventHandler(utils.changeCountHandler));
+      utils.synchronizeFields('input', item, item.closest('.order-table-row').querySelector('.item-in-order-total'), synchronizePrice);
+      utils.synchronizeFields('blur', item, item.closest('.order-table-row').querySelector('.item-in-order-total'), synchronizePrice);
+      utils.synchronizeFields('blur', item, item, synchronizeCart);
+    });
+    showOrderFooter();
   };
 
   var removeItemFromCart = function (evt) {
-    if (Object.prototype.toString.call(evt) === '[object MouseEvent]') {
+    if (Object.prototype.toString. call(evt) === '[object MouseEvent]') {
       evt.preventDefault();
-      cart.deleteItem(evt.target.dataset.prodId);
+      window.cart.deleteItem(evt.target.dataset.prodId);
       evt.target.closest('.order-table-row').remove();
     } else if (Object.prototype.toString.call(evt) === '[object CustomEvent]') {
       var buttonToClick = orderTable.querySelector('a[data-prod-id="' + evt.detail + '"]');
@@ -38,9 +55,34 @@ window.doShopping = (function () {
         buttonToClick.closest('.order-table-row').remove();
       }
     }
+    showOrderFooter();
+  };
+
+  var changeItemInCart = function () {
+    var cartRow = null;
+    window.cart.getArrayItems().forEach(
+        function (item) {
+          var countAndPrice = window.cart.getCountAndPrice(item.key);
+          cartRow = cartTable.querySelector('button[data-prod-id="' + item.key + '"]').closest('.cart-table-row');
+          cartRow.querySelector('.item-in-cart-weight').innerText = countAndPrice.count + ' кг х ';
+          cartRow.querySelector('.item-in-cart-total').innerText = countAndPrice.totalPrice + ' руб.';
+        });
+    cartContainer.querySelector('.cart-total-price').innerText = 'Итого: ' + window.cart.getTotalOrderPrice() + ' руб.';
+    orderContainer.querySelector('.order-total-price').innerText = 'Итого: ' + window.cart.getTotalOrderPrice() + ' руб.';
+  };
+
+  var synchronizePrice = function (masterElement, slaveElement) {
+    var newPrice = window.cart.changeCount(masterElement.dataset.prodId, masterElement.value);
+    slaveElement.innerText = ((!newPrice) ? 0 : newPrice) + ' руб.';
+  };
+
+  var synchronizeCart = function (masterElement, slaveElement) {
+    var newPrice = window.cart.changeCount(masterElement.dataset.prodId, masterElement.value);
+    slaveElement.innerText = newPrice + ' руб.';
   };
 
   document.addEventListener('deleteProdFromCart', utils.eventHandler(removeItemFromCart));
+  document.addEventListener('changeProdInCart', utils.eventHandler(changeItemInCart));
 
   showOrderContent();
 })();
