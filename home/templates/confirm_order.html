@@ -54,6 +54,21 @@
             </div>
         </div>
 
+
+    <section class="create-profile hideme">
+        <div class="create-profile-container clearfix">
+            <button class="create-profile-form-close-btn" type="button" title="Закрыть">Закрыть</button>
+            <p class="create-profile-title">
+                Профайл пользователя
+            </p>
+            <form class="create-profile-form clearfix">
+                {% include "inc_create_profile.html" %}
+                <button class="red-btn create-profile-save-btn" type="submit" name="create-profile-send-btn">Сохранить</button>
+            </form>
+        </div>
+    </section>
+
+
     </div>
 </main>
 {% endblock %}

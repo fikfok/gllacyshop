@@ -7,6 +7,9 @@ window.doShopping = (function () {
   var cartContainer = document.querySelector('.cart-content');
   var confirmBtn = orderContainer.querySelector('.confirm-order-btn');
   var cartTable = cartContainer.querySelector('.cart-content-table');
+  var createProfileDialog = document.querySelector('.create-profile');
+  var closeBtnProfileDialog = createProfileDialog.querySelector('.create-profile-form-close-btn');
+  var phoneNumber = createProfileDialog.querySelector('#id_phone');
   var utils = window.utils;
 
   var showOrderFooter = function () {
@@ -97,14 +100,43 @@ window.doShopping = (function () {
         '/order/',
         10000,
         function (response) {
-          console.log('OK');
+          if (response.status.toString().toLowerCase() === 'ok') {
+            console.log('OK');
+          } else {
+            createProfileDialog.classList.remove('hideme');
+          }
+
         },
         function () {
           console.log('ERROR');
         },
         data
-      );
+    );
   });
 
+  /**
+   * Закрываю окно создания профиля
+   * @return {function} - функция, которую надо выполнить
+   */
+  var closeCreateProfileDialog = function () {
+    return utils.doClose(createProfileDialog);
+  };
+
+  var checkPhoneNumber = function (evt) {
+    var usersPhone = evt.target.value.match(/^8-{0,1}\d{3}-{0,1}\d{3}-{0,1}\d{2}-{0,1}\d{2}$/i);
+    var res = false;
+
+    if (usersPhone) {
+      evt.target.classList.remove('error-border');
+      res = true;
+    } else {
+      evt.target.classList.add('error-border');
+    }
+    return res;
+  };
+
+  document.addEventListener('keydown', utils.escPressHandler(closeCreateProfileDialog));
+  closeBtnProfileDialog.addEventListener('click', utils.eventHandler(closeCreateProfileDialog));
+  phoneNumber.addEventListener('blur', utils.eventHandler(checkPhoneNumber));
   showOrderContent();
 })();

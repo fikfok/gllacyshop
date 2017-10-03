@@ -1,0 +1,22 @@
+{% load my_tags %}
+
+{% csrf_token %}
+<table>
+    {% for field in profile_form %}
+        <tr>
+            <td>
+                {{ field.label_tag }}
+            </td>
+            <td>
+                <div>
+                    <ul>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <li class="create-user-error">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

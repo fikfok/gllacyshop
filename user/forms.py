@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from .models import Profile
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
@@ -15,15 +15,6 @@ class UserRegistrationForm(UserCreationForm):
             'first_name': 'Имя',
             'last_name': 'Фамилия'
         }
-        # def clean(self):
-        #     cleaned_data = super(UserRegistrationForm, self).clean()
-        #     password1 = cleaned_data.get('password1')
-        #     password2 = cleaned_data.get('password2')
-        #
-        #     if password1 != password2:
-        #         # self.add_error('password2', 'Пароли не совпадают')
-        #         raise forms.ValidationError("Пароли не совпадают")
-
         # При таком способе присвоения класса полям с паролями почему-то класс не присваивается
         # Пришлось в шаблоне с помощью кастомного тега-фильтра добавлять класс
         # widgets = {'username': forms.TextInput(attrs={'class': 'txt-box ttt'}),
@@ -34,9 +25,13 @@ class UserRegistrationForm(UserCreationForm):
         #            'last_name': forms.TextInput(attrs={'class': 'txt-box'}),
         #            }
 
-
-
-# class UserChangeForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'first_name', 'last_name']
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['address', 'phone']
+        labels = {'address': 'Адрес доставки',
+                  'phone': 'Телефон'
+                  }
+        widgets = {'address': forms.Textarea(attrs={'class': 'create-profile-address'}),
+                   'phone': forms.TextInput(attrs={'class': 'txt-box'}),
+                   }

@@ -49,7 +49,7 @@ window.auth = (function () {
   };
 
   /**
-   * Открываю окно авторизации
+   * Закрываю окно авторизации
    * @return {function} - функция, которую надо выполнить
    */
   var closeAuthDialog = function () {
