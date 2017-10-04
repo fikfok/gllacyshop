@@ -37,6 +37,8 @@ urlpatterns += [
     url(r'^user/logout/$', adm.logout, name='logout'),
     url(r'^create/user/$', usr.create_user, name='create_user'),
     url(r'^order/$', hm.CompleteOrder.as_view(), name='complete_order'),
+    url(r'^profile/$', hm.SaveProfile.as_view(), name='profile'),
+    url(r'^orders/$', hm.OrdersListView.as_view(), name='orders'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

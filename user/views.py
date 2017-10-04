@@ -25,6 +25,7 @@ class UsersListView(ListView):
         context['last_name'] = self.request.GET.get('last-name', '')
         context['login'] = self.request.GET.get('login', '')
         context['email'] = self.request.GET.get('email', '')
+        context['phone'] = self.request.GET.get('phone', '')
         context['address'] = self.request.GET.get('address', '')
         context['media_url'] = MEDIA_URL
         return context
@@ -36,12 +37,14 @@ class UsersListView(ListView):
             username__contains=self.request.GET.get('login', ''),
             email__contains=self.request.GET.get('email', ''))
         if self.request.GET.get('address'):
-            qs = qs.filter(address__address__contains=self.request.GET.get('address'))
-        return qs
+            qs = qs.filter(profile__address__contains=self.request.GET.get('address'))
+        if self.request.GET.get('phone'):
+            qs = qs.filter(profile__phone__contains=self.request.GET.get('phone'))
+        return qs.order_by('pk')
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, *args, **kwargs):
-        usr_list = User.objects.all()
+        usr_list = User.objects.all().order_by('pk')
         paginator = Paginator(usr_list, self.paginate_by)
 
         page = self.request.GET.get('page', 1)

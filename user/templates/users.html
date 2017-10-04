@@ -44,6 +44,12 @@
                     </div>
                 </div>
                 <div class="users-filter-item-container">
+                    <p class="users-users-filter-item-label"><label for="user-filter-phone">Телефон</label></p>
+                    <div class="users-filter-item-control">
+                        <input id="user-filter-phone" class="txt-box user-txt-box" type="text" value="{{ phone }}" name="phone"/>
+                    </div>
+                </div>
+                <div class="users-filter-item-container">
                     <p class="users-users-filter-item-label"><label for="user-filter-address">Адрес доставки</label></p>
                     <div class="users-filter-item-control">
                         <input id="user-filter-address" class="txt-box user-txt-box" type="text" value="{{ address }}" name="address"/>
@@ -68,7 +74,7 @@
                                 E-mail
                             </div>
                             <div class="users-list-table-cel">
-                                Администратор
+                                Телефон
                             </div>
                             <div class="users-list-table-cel">
                                 Адрес доставки
@@ -90,10 +96,10 @@
                                 {{ item.email }}
                             </div>
                             <div class="users-list-table-cel">
-                                {% if item.is_superuser %}да{% else %}нет{% endif %}
+                                {{ item.profile.phone }}
                             </div>
                             <div class="users-list-table-cel">
-                                {{ item.address }}
+                                {{ item.profile.address }}
                             </div>
                         </div>
                     {% endfor %}

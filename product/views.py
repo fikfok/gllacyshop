@@ -7,8 +7,7 @@ from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect
 from .forms import ProductEditForm
-from django.shortcuts import render
-from django.http import Http404
+
 ITEMS_IN_PAGES = 3
 
 

@@ -94,6 +94,12 @@
     return {count: count, totalPrice: totalPrice};
   };
 
+  Cart.prototype.clearCart = function () {
+    localStorage.clear();
+    this.array = [];
+    document.dispatchEvent(new CustomEvent('clearCart'));
+  };
+
   var cart = new Cart();
   window.cart = cart;
 })();

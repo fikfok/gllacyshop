@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+{% load my_tags %}
+
+{% block content %}
+<main class="main-container">
+
+    <div class="center-container">
+
+        <div class="main-container-header clearfix">
+            <div class="breadcrumbs">
+                <ul class="breadcrumbs-links">
+                    <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
+                    <li><span class="breadcumbs-links-item">Мои заказы</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="catalog">
+            <div class="users-list">
+{##}
+{#            <form method="get" action="">#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-first-name">Имя</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-first-name" class="txt-box user-txt-box" type="text" value="{{ first_name }}" name="first-name"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-last-name">Фамилия</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-last-name" class="txt-box user-txt-box" type="text" value="{{ last_name }}" name="last-name"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-login">Логин</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-login" class="txt-box user-txt-box" type="text" value="{{ login }}" name="login"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-email">Email</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-email" class="txt-box user-txt-box" type="text" value="{{ email }}" name="email"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-phone">Телефон</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-phone" class="txt-box user-txt-box" type="text" value="{{ phone }}" name="phone"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="users-filter-item-container">#}
+{#                    <p class="users-users-filter-item-label"><label for="user-filter-address">Адрес доставки</label></p>#}
+{#                    <div class="users-filter-item-control">#}
+{#                        <input id="user-filter-address" class="txt-box user-txt-box" type="text" value="{{ address }}" name="address"/>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <input class="red-btn user-filter-btn wo-padding-top" type="submit" value="Фильтровать">#}
+{#            </form>#}
+{##}
+                <div class="users-list-content-table">
+
+                        <div class="users-list-table-row">
+                            <div class="users-list-table-cel">
+                                Номер заказа
+                            </div>
+                            <div class="users-list-table-cel">
+                                Дата заказа
+                            </div>
+                            <div class="users-list-table-cel">
+                                Статус заказа
+                            </div>
+                            <div class="users-list-table-cel">
+                                Стоимость
+                            </div>
+                            <div class="users-list-table-cel">
+                                Товары
+                            </div>
+                        </div>
+
+                    {% for item in object_list %}
+                        <div class="users-list-table-row">
+                            <div class="users-list-table-cel">
+                                {{ item.pk }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.order_date }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.status.name }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                {{ item.order }}
+                            </div>
+                            <div class="users-list-table-cel">
+                                Goods
+{#                                {{ item.profile.phone }}#}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            <div class="paginator clearfix">
+                <ul class="paginator-links">
+
+                    {% if page_obj.has_previous %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast" href="?page={{ page_obj.previous_page_number }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast left-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+
+                    {% for page_num in paginator.num_pages|my_range %}
+                        <li><a class="paginator-btn--contrast paginator-btn--contrast {% if page_num == page_obj.number %}paginator-btn--active--contrast{% endif %}" {% if page_num != page_obj.number %}href="?page={{ page_num }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"{% endif %}>{{ page_num }}</a></li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast" href="?page={{ page_obj.next_page_number }}&first-name={{ first_name }}&last-name={{ last_name }}&login={{ login }}&email={{ email }}&address={{ address }}"></a></li>
+                    {% else %}
+                        <li><a class="paginator-btn-arrow--contrast right-arrow--contrast arrow-disabled--contrast"></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+        </section>
+
+    </div>
+</main>
+
+{% endblock %}

@@ -114,5 +114,9 @@ window.doShopping = (function () {
     renderCartTitle();
     refreshCartBlock();
   });
+  document.addEventListener('clearCart', function () {
+    renderCartTitle();
+    refreshCartBlock();
+  });
 
 })();
