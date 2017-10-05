@@ -11,91 +11,143 @@
             <div class="breadcrumbs">
                 <ul class="breadcrumbs-links">
                     <li><a class="breadcumbs-links-item" href="/">Главная</a></li>
-                    <li><span class="breadcumbs-links-item">Мои заказы</span></li>
+                    <li><span class="breadcumbs-links-item">{% if user.is_staff %}Заказы клиентов{% else %}Мои заказы{% endif %}</span></li>
                 </ul>
             </div>
         </div>
         <section class="catalog">
-            <div class="users-list">
+            <div class="order-list{% if user.is_staff %}-admin-view{% endif %}">
 {##}
 {#            <form method="get" action="">#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-first-name">Имя</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-first-name" class="txt-box user-txt-box" type="text" value="{{ first_name }}" name="first-name"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-first-name">Имя</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-first-name" class="txt-box order-txt-box" type="text" value="{{ first_name }}" name="first-name"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-last-name">Фамилия</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-last-name" class="txt-box user-txt-box" type="text" value="{{ last_name }}" name="last-name"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-last-name">Фамилия</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-last-name" class="txt-box order-txt-box" type="text" value="{{ last_name }}" name="last-name"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-login">Логин</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-login" class="txt-box user-txt-box" type="text" value="{{ login }}" name="login"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-login">Логин</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-login" class="txt-box order-txt-box" type="text" value="{{ login }}" name="login"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-email">Email</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-email" class="txt-box user-txt-box" type="text" value="{{ email }}" name="email"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-email">Email</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-email" class="txt-box order-txt-box" type="text" value="{{ email }}" name="email"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-phone">Телефон</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-phone" class="txt-box user-txt-box" type="text" value="{{ phone }}" name="phone"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-phone">Телефон</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-phone" class="txt-box order-txt-box" type="text" value="{{ phone }}" name="phone"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <div class="users-filter-item-container">#}
-{#                    <p class="users-users-filter-item-label"><label for="user-filter-address">Адрес доставки</label></p>#}
-{#                    <div class="users-filter-item-control">#}
-{#                        <input id="user-filter-address" class="txt-box user-txt-box" type="text" value="{{ address }}" name="address"/>#}
+{#                <div class="order-filter-item-container">#}
+{#                    <p class="order-order-filter-item-label"><label for="order-filter-address">Адрес доставки</label></p>#}
+{#                    <div class="order-filter-item-control">#}
+{#                        <input id="order-filter-address" class="txt-box order-txt-box" type="text" value="{{ address }}" name="address"/>#}
 {#                    </div>#}
 {#                </div>#}
-{#                <input class="red-btn user-filter-btn wo-padding-top" type="submit" value="Фильтровать">#}
+{#                <input class="red-btn order-filter-btn wo-padding-top" type="submit" value="Фильтровать">#}
 {#            </form>#}
 {##}
-                <div class="users-list-content-table">
+                <div class="order-list-content-table">
 
-                        <div class="users-list-table-row">
-                            <div class="users-list-table-cel">
-                                Номер заказа
+                        <div class="order-list-table-row">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
+                                Заказ №
                             </div>
-                            <div class="users-list-table-cel">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 Дата заказа
                             </div>
-                            <div class="users-list-table-cel">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 Статус заказа
                             </div>
-                            <div class="users-list-table-cel">
-                                Стоимость
-                            </div>
-                            <div class="users-list-table-cel">
+                            {% if not user.is_staff %}
+                                <div class="order-list-table-cel">
+                                    Стоимость
+                                </div>
+                            {% endif %}
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 Товары
                             </div>
+                            {% if user.is_staff %}
+                                <div class="order-list-table-cel-admin-view">
+                                    Клиент
+                                </div>
+                            {% endif %}
+                            {% if user.is_staff %}
+                                <div class="order-list-table-cel-admin-view">
+                                    Действие
+                                </div>
+                            {% endif %}
                         </div>
 
                     {% for item in object_list %}
-                        <div class="users-list-table-row">
-                            <div class="users-list-table-cel">
+                        <div class="order-list-table-row">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 {{ item.pk }}
                             </div>
-                            <div class="users-list-table-cel">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 {{ item.order_date }}
                             </div>
-                            <div class="users-list-table-cel">
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
                                 {{ item.status.name }}
+                                {% if user.is_staff %}
+                                    <br>
+                                    ({{ item.status_change_date }})
+                                {% endif %}
                             </div>
-                            <div class="users-list-table-cel">
-                                {{ item.order }}
+                            {% if not user.is_staff %}
+                                <div class="order-list-table-cel">
+                                    {{ item.items.all|total_sum:'total_price' }}
+                                </div>
+                            {% endif %}
+                            <div class="order-list-table-cel{% if user.is_staff %}-admin-view{% endif %}">
+                                <div class="order-list-content-table">
+                                {% for prod in  item.items.all%}
+                                    <div class="order-list-table-row">
+                                        <div class="order-list-table-cel">
+                                            {{ prod.product.name }}
+                                        </div>
+                                        <div class="order-list-table-cel">
+                                            {{ prod.count }}{% if not user.is_staff %} кг.{% endif %}
+                                        </div>
+                                        <div class="order-list-table-cel">
+                                            {{ prod.price }}{% if not user.is_staff %} руб.{% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                {% if user.is_staff %}
+                                    <div class="order-list-table-row">
+                                        <div class="order-list-table-cel">
+                                        Итого: {{ item.items.all|total_sum:'total_price' }} руб.
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                </div>
                             </div>
-                            <div class="users-list-table-cel">
-                                Goods
-{#                                {{ item.profile.phone }}#}
-                            </div>
+
+                            {% if user.is_staff %}
+                                <div class="order-list-table-cel-admin-view">
+                                    <ul>
+                                        <li>{{ item.user.first_name }} {{ item.user.last_name }}</li>
+                                        <li>{{ item.profile.address }}</li>
+                                        <li>{{ item.profile.phone }}</li>
+                                        <li><a class="add-comment" href="" data-order-id="{{ item.pk }}">Комментарий:</a> <span data-order-id="{{ item.pk }}">{{ item.comment }}</span></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+
                         </div>
                     {% endfor %}
 
@@ -126,6 +178,20 @@
         </section>
 
     </div>
+
+    <section class="create-profile hideme">
+        <div class="create-profile-container clearfix">
+            <button class="create-profile-form-close-btn" type="button" title="Закрыть">Закрыть</button>
+            <p class="create-profile-title">
+                Комментарий к заказу
+            </p>
+            <form class="create-profile-form clearfix">
+                {% include 'inc_create_profile.html' %}
+                <button class="red-btn create-profile-save-btn" type="submit" name="save-comment-send-btn">Сохранить</button>
+            </form>
+        </div>
+    </section>
+
 </main>
 
 {% endblock %}

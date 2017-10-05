@@ -28,7 +28,7 @@ class ProductsListView(ListView):
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='/'))
     def dispatch(self, *args, **kwargs):
-        prod_list = Product.objects.all()
+        prod_list = Product.objects.all().order_by('pk')
         paginator = Paginator(prod_list, self.paginate_by)
 
         page = self.request.GET.get('page', 1)
@@ -36,11 +36,9 @@ class ProductsListView(ListView):
             object_list = paginator.page(page)
         except PageNotAnInteger:
             self.kwargs['page'] = 1
-            """Почему от сюда видно имя url'а?"""
             return redirect('products')
         except EmptyPage:
             self.kwargs['page'] = 1
-            """Почему от сюда видно имя url'а?"""
             return redirect('products')
         return super(ListView, self).dispatch(*args, **kwargs)
 

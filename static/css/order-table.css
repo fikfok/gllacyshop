@@ -1,0 +1,186 @@
+/*------------------------------------------------*/
+/*Таблица вывода всех заказов*/
+.order-list {
+    width: 1070px;
+    background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+    padding-top: 21px;
+    padding-right: 13px;
+    padding-bottom: 21px;
+    padding-left: 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.order-list-content-table {
+    display: table;
+    table-layout: fixed;
+    font-size: 13px;
+    line-height: 1.23em;
+    margin-bottom: 18px;
+    width: 100%
+}
+
+.order-list-table-row {
+    display: table-row;
+}
+
+.order-list-table-cel,
+.order-list-table-cel-admin-view {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+    border-bottom: 1px solid #838380;
+}
+
+.order-list-table-cel,
+.order-list-table-cel-admin-view {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*------------------------------------------------*/
+/*Таблица вывода всех заказов дял пользователя*/
+
+.order-list-table-cel:nth-child(1) {
+    width: 10%;
+}
+
+.order-list-table-cel:nth-child(2) {
+    width: 17%;
+}
+
+.order-list-table-cel:nth-child(3) {
+    width: 13%;
+}
+
+.order-list-table-cel:nth-child(4) {
+    width: 10%;
+}
+
+.order-list-table-cel:nth-child(5) {
+    width: 50%;
+}
+
+.order-list-table-cel:nth-child(5) .order-list-table-cel:nth-child(1) {
+    width: 65%;
+}
+
+.order-list-table-cel:nth-child(5) .order-list-table-cel:nth-child(2),
+.order-list-table-cel:nth-child(5) .order-list-table-cel:nth-child(3) {
+    width: 17.5%;
+}
+
+.order-list-table-cel:nth-child(5) .order-list-table-cel {
+    border-bottom: none;
+}
+
+.order-list-table-cel:nth-child(5) .order-list-content-table {
+    margin-bottom: 0px;
+}
+/*------------------------------------------------*/
+
+
+/*------------------------------------------------*/
+/*Таблица вывода всех заказов дял администратора*/
+.order-list-admin-view {
+    width: 1170px;
+    background-color: #f8f7f4;
+    background-image: url("../img/background_wafer.jpg");
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.4);
+    padding-top: 21px;
+    padding-right: 13px;
+    padding-bottom: 21px;
+    padding-left: 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.order-list-table-cel-admin-view:nth-child(1) {
+    width: 5%;
+}
+
+.order-list-table-cel-admin-view:nth-child(2) {
+    width: 10%;
+}
+
+.order-list-table-cel-admin-view:nth-child(3) {
+    width: 7%;
+}
+
+.order-list-table-cel-admin-view:nth-child(4) {
+    width: 25%;
+}
+
+.order-list-table-cel-admin-view:nth-child(5) {
+    width: 35%;
+}
+
+.order-list-table-cel-admin-view:nth-child(5) li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.order-list-table-cel-admin-view:nth-child(6) {
+    width: 8%;
+}
+
+
+.order-list-table-cel-admin-view:nth-child(4) .order-list-table-cel:nth-child(1) {
+    width: 80%;
+}
+
+.order-list-table-cel-admin-view:nth-child(4) .order-list-table-cel:nth-child(2),
+.order-list-table-cel-admin-view:nth-child(4) .order-list-table-cel:nth-child(3) {
+    width: 10%;
+}
+
+.order-list-table-cel-admin-view:nth-child(4) .order-list-table-cel {
+    border-bottom: none;
+}
+
+.order-list-table-cel-admin-view:nth-child(4) .order-list-content-table {
+    margin-bottom: 0px;
+}
+/*------------------------------------------------*/
+
+
+/*------------------------------------------------*/
+/*Таблица вывода всех заказов*/
+
+.order-filter-item-container {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.order-order-filter-item-label {
+    font-size: 16px;
+    line-height: 1.2em;
+    font-weight: normal;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.order-filter-item-control {
+    padding-right: 10px;
+}
+
+.order-txt-box {
+    height: 33px;
+    width: 140px;
+}
+
+.order-filter-btn {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    line-height: 1.23em;
+    font-weight: normal;
+}
+/*------------------------------------------------*/

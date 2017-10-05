@@ -21,8 +21,9 @@ class Order(models.Model):
         return 'Order #{0}'.format(self.pk)
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='order', verbose_name='Заказ')
+    order = models.ForeignKey(Order, related_name='items', verbose_name='Заказ')
     product = models.ForeignKey(Product, verbose_name='Товар')
     count = models.DecimalField(max_digits=6, decimal_places=1, verbose_name='Количество')
     price = models.DecimalField(max_digits=6, decimal_places=1, verbose_name='Цена за единицу')
+    total_price = models.DecimalField(max_digits=6, decimal_places=1, verbose_name='Итоговая цена за товар')
 

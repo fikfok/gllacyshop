@@ -14,14 +14,25 @@ window.utils = (function () {
    * @param {function} callback - callback-функция
    * @return {*} - iife функция, запускающая callback функцию
    */
-  var eventHandler = function (callback) {
-    if (!checkCallback(callback)) {
-      return false;
-    }
+  // var eventHandler = function (callback) {
+  //   if (!checkCallback(callback)) {
+  //     return false;
+  //   }
+  //   return function (evt) {
+  //     callback(evt);
+  //   };
+  // };
+  function eventHandler() {
+    var args = Array.prototype.slice.call(arguments);
+    var callback = args[0];
+    // if (!checkCallback(callback)) {
+    //   return false;
+    // }
     return function (evt) {
-      callback(evt);
+      args.splice(0, 1, evt);
+      callback.apply(null, args);
     };
-  };
+  }
 
   /**
    * Обработчик события нажатия Enter

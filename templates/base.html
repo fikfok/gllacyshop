@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{% static "css/create-user.css" %}">
         <link rel="stylesheet" href="{% static "css/confirm_order.css" %}">
         <link rel="stylesheet" href="{% static "css/create-profile.css" %}">
+        <link rel="stylesheet" href="{% static "css/order-table.css" %}">
     </head>
     <body class="{% if current_site == "home"%}home-site{% else %}other-site{% endif %}">
         <header class="main-header">
@@ -145,6 +146,9 @@
         <script src="{% static "js/do_shopping.js" %}"></script>
          {% if current_site == "confirm_order" %}
             <script src="{% static "js/confirm_order.js" %}"></script>
+         {% endif %}
+         {% if current_site == "manage_orders" %}
+            <script src="{% static "js/manage_orders.js" %}"></script>
          {% endif %}
 
     </body>

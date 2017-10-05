@@ -39,6 +39,8 @@ urlpatterns += [
     url(r'^order/$', hm.CompleteOrder.as_view(), name='complete_order'),
     url(r'^profile/$', hm.SaveProfile.as_view(), name='profile'),
     url(r'^orders/$', hm.OrdersListView.as_view(), name='orders'),
+    url(r'^ordercomment/$', hm.order_comment, name='order_comment'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

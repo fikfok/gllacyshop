@@ -6,6 +6,7 @@ from gllacyshop.settings import MEDIA_URL
 from user.forms import UserRegistrationForm, UserProfileForm
 from user.models import Profile
 from home.models import Order, OrderItem, OrderStatus
+from home.forms import OrderCommentForm
 import json
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import user_passes_test
@@ -52,10 +53,12 @@ class CompleteOrder(TemplateView):
                                   status_id=OrderStatus.objects.values('pk').get(name='Новый')['pk'])
                 new_order.save()
                 for item in order_list:
+                    prod_price = Product.objects.values('price').get(pk=item['key'])['price']
                     new_item = OrderItem(order_id=new_order.id,
                                          product_id=item['key'],
                                          count=item['value']['count'],
-                                         price=Product.objects.values('price').get(pk=item['key'])['price'])
+                                         price=prod_price,
+                                         total_price=item['value']['count']*prod_price)
                     new_item.save()
                 return JsonResponse({'status': 'OK'})
             return JsonResponse({'status': 'WRONG_ORDER'})
@@ -88,17 +91,19 @@ class OrdersListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(OrdersListView, self).get_context_data(**kwargs)
         context['media_url'] = MEDIA_URL
-        context['current_site'] = 'orders_list'
+        if User.objects.values('is_staff').get(pk=self.request.user.id)['is_staff']:
+            context['current_site'] = 'manage_orders'
+        else:
+            context['current_site'] = 'orders_list'
+        context['profile_form'] = OrderCommentForm()
         return context
 
     def get_queryset(self):
         if User.objects.values('is_staff').get(pk=self.request.user.id)['is_staff']:
-            order_list = Order.objects.all().order_by('pk')
+            order_list = Order.objects.all().order_by('-pk')
         else:
-            order_list = Order.objects.filter(user_id=self.request.user.id).order_by('pk')
+            order_list = Order.objects.filter(user_id=self.request.user.id).order_by('-pk')
         return order_list
-
-
 
     @method_decorator(user_passes_test(lambda u: u.is_authenticated, login_url='/'))
     def dispatch(self, *args, **kwargs):
@@ -119,3 +124,16 @@ class OrdersListView(ListView):
             self.kwargs['page'] = 1
             return redirect('orders')
         return super(ListView, self).dispatch(*args, **kwargs)
+
+@user_passes_test(lambda u: u.is_superuser)
+def order_comment(request):
+    if request.is_ajax() and request.method == 'POST':
+        req = json.loads(request.POST['data'])
+        if 'comment' not in req.keys():
+            data = {'comment': Order.objects.values('comment').get(pk=req['orderId'])['comment']}
+        else:
+            order_to_update = Order.objects.get(pk=req['orderId'])
+            order_to_update.comment = req['comment']
+            order_to_update.save()
+            data = {'status': 'ok'}
+    return JsonResponse(data)
