@@ -118,7 +118,7 @@
 }
 
 .order-list-table-cel-admin-view:nth-child(5) {
-    width: 35%;
+    width: 25%;
 }
 
 .order-list-table-cel-admin-view:nth-child(5) li {
@@ -127,7 +127,7 @@
 }
 
 .order-list-table-cel-admin-view:nth-child(6) {
-    width: 8%;
+    width: 18%;
 }
 
 
@@ -152,7 +152,6 @@
 
 /*------------------------------------------------*/
 /*Таблица вывода всех заказов*/
-
 .order-filter-item-container {
     display: inline-block;
     margin-bottom: 20px;
@@ -182,5 +181,9 @@
     font-size: 13px;
     line-height: 1.23em;
     font-weight: normal;
+}
+
+.dropdwonlist-container {
+    margin-bottom: 10px;
 }
 /*------------------------------------------------*/

@@ -3,10 +3,13 @@
 window.manageOrders = (function () {
   var METHOD = 'POST';
   var SERVER_URL_ORDER_COMMENT = '/ordercomment/';
+  var SERVER_URL_SAVE_NEW_STATUS = '/orderstatus/';
   var TIMEOUT = 15000;
   var RESPONSE_TYPE = 'json';
 
-  var addComments = document.querySelectorAll('.add-comment');
+  var orderTableAdmView = document.querySelector('.order-list-admin-view');
+  var addComments = orderTableAdmView.querySelectorAll('.add-comment');
+  var saveStatusBtns = orderTableAdmView.querySelectorAll('.save-status');
   var addCommentDialog = document.querySelector('.create-profile');
   var closeBtnProfileDialog = addCommentDialog.querySelector('.create-profile-form-close-btn');
   var addCommentDialogTitle = addCommentDialog.querySelector('.create-profile-title');
@@ -15,7 +18,6 @@ window.manageOrders = (function () {
   var csrfToken = addCommentDialog.querySelector('input[name="csrfmiddlewaretoken"]');
   var utils = window.utils;
   var currentOrderId = 0;
-  var commentChanged = false;
 
   var closeAddCommentDialog = function () {
     utils.doClose(addCommentDialog);
@@ -71,5 +73,32 @@ window.manageOrders = (function () {
   });
 
   saveBtn.addEventListener('click', utils.eventHandler(changeComment, 'do_save'));
+
+  saveStatusBtns.forEach(function (item) {
+    item.addEventListener('click', function (evt) {
+      evt.preventDefault();
+
+      var data = new FormData();
+      data.append('data', JSON.stringify({statusId: evt.target.closest('.order-list-table-cel-admin-view').querySelector('select[data-order-id="' + evt.target.dataset.orderId + '"]').value,
+        orderId: evt.target.dataset.orderId}));
+      data.append('csrfmiddlewaretoken', csrfToken.value);
+
+      window.backend.ajax(
+          METHOD,
+          RESPONSE_TYPE,
+          SERVER_URL_SAVE_NEW_STATUS,
+          TIMEOUT,
+          function (response) {
+            if (response.status.toLowerCase() === 'ok') {
+              location.reload();
+            }
+          },
+          function () {
+            console.log('ERROR');
+          },
+          data
+      );
+    });
+  });
 
 })();

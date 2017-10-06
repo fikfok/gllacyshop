@@ -90,7 +90,7 @@
     background-color: white;
     color: #000000;
     border-width: 0px;
-    width: 164px;
+    min-width: 164px;
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;

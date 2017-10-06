@@ -106,4 +106,15 @@
     line-height: 1.23em;
     font-weight: normal;
 }
+
+.product-btn-wo-padding-top {
+    text-align: center;
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    font-size: 13px;
+    line-height: 1.23em;
+    font-weight: normal;
+}
 /*------------------------------------------------*/

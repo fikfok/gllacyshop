@@ -146,6 +146,21 @@
                                         <li><a class="add-comment" href="" data-order-id="{{ item.pk }}">Комментарий:</a> <span data-order-id="{{ item.pk }}">{{ item.comment }}</span></li>
                                     </ul>
                                 </div>
+                                <div class="order-list-table-cel-admin-view">
+                                {% with options_dict=select_list|get_options:item.pk %}
+                                    {% if options_dict|length > 0 %}
+                                        <div class="dropdwonlist-container">
+                                            <select name="housing_type" id="order-action" class="dropdown-list--contrast txt-box" data-order-id="{{ item.pk }}">
+                                            {% for key, value in options_dict.items %}
+                                                <option value="{{ key }}">{{ value }}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                        <a class="red-btn product-btn save-status" href="" data-order-id="{{ item.pk }}">Сохранить</a>
+                                    {% endif %}
+                                {% endwith %}
+                                </div>
+
                             {% endif %}
 
                         </div>

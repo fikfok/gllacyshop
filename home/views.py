@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+import datetime
 
 ITEMS_IN_PAGES = 5
 
@@ -54,11 +55,12 @@ class CompleteOrder(TemplateView):
                 new_order.save()
                 for item in order_list:
                     prod_price = Product.objects.values('price').get(pk=item['key'])['price']
+                    print(prod_price)
                     new_item = OrderItem(order_id=new_order.id,
                                          product_id=item['key'],
-                                         count=item['value']['count'],
-                                         price=prod_price,
-                                         total_price=item['value']['count']*prod_price)
+                                         count=float(item['value']['count']),
+                                         price=float(prod_price),
+                                         total_price=float(item['value']['count']*prod_price))
                     new_item.save()
                 return JsonResponse({'status': 'OK'})
             return JsonResponse({'status': 'WRONG_ORDER'})
@@ -88,6 +90,13 @@ class OrdersListView(ListView):
     template_name = 'orders_list.html'
     paginate_by = ITEMS_IN_PAGES
 
+    def get_order_list(self):
+        if User.objects.values('is_staff').get(pk=self.request.user.id)['is_staff']:
+            order_list = Order.objects.all().order_by('-pk')
+        else:
+            order_list = Order.objects.filter(user_id=self.request.user.id).order_by('-pk')
+        return order_list
+
     def get_context_data(self, **kwargs):
         context = super(OrdersListView, self).get_context_data(**kwargs)
         context['media_url'] = MEDIA_URL
@@ -96,14 +105,26 @@ class OrdersListView(ListView):
         else:
             context['current_site'] = 'orders_list'
         context['profile_form'] = OrderCommentForm()
+
+        order_list = self.get_order_list()
+        select_list = []
+        for item in order_list:
+            options = {}
+            statuses = []
+            if str(item.status) == 'Новый':
+                statuses = OrderStatus.objects.filter(name__in=['Подтверждён', 'Дозвониться не удалось', 'Отменён']).order_by('pk')
+            elif str(item.status) == 'Подтверждён':
+                statuses = OrderStatus.objects.filter(name__in=['Доставлен и вручен', 'Отказ принять, возврат', 'Отменён']).order_by('pk')
+            elif str(item.status) == 'Дозвониться не удалось':
+                statuses = OrderStatus.objects.filter(name__in=['Подтверждён', 'Отменён']).order_by('pk')
+            for st in statuses:
+                options[st.pk] = st.name
+            select_list.append({'orderId': item.pk, 'options': options})
+        context['select_list'] = select_list
         return context
 
     def get_queryset(self):
-        if User.objects.values('is_staff').get(pk=self.request.user.id)['is_staff']:
-            order_list = Order.objects.all().order_by('-pk')
-        else:
-            order_list = Order.objects.filter(user_id=self.request.user.id).order_by('-pk')
-        return order_list
+        return self.get_order_list()
 
     @method_decorator(user_passes_test(lambda u: u.is_authenticated, login_url='/'))
     def dispatch(self, *args, **kwargs):
@@ -134,6 +155,20 @@ def order_comment(request):
         else:
             order_to_update = Order.objects.get(pk=req['orderId'])
             order_to_update.comment = req['comment']
-            order_to_update.save()
+            order_to_update.save(update_fields=['comment'])
             data = {'status': 'ok'}
+    return JsonResponse(data)
+
+@user_passes_test(lambda u: u.is_superuser)
+def order_status(request):
+    if request.is_ajax() and request.method == 'POST':
+        req = json.loads(request.POST['data'])
+        try:
+            order_to_update = Order.objects.get(pk=req['orderId'])
+        except Order.DoesNotExist:
+            return JsonResponse({'status': 'error'})
+        order_to_update.status_id = int(req['statusId'])
+        order_to_update.status_change_date = datetime.datetime.now()
+        order_to_update.save(update_fields=['status_id', 'status_change_date'])
+        data = {'status': 'ok'}
     return JsonResponse(data)

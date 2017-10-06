@@ -40,7 +40,7 @@ urlpatterns += [
     url(r'^profile/$', hm.SaveProfile.as_view(), name='profile'),
     url(r'^orders/$', hm.OrdersListView.as_view(), name='orders'),
     url(r'^ordercomment/$', hm.order_comment, name='order_comment'),
-
+    url(r'^orderstatus/$', hm.order_status, name='order_status'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

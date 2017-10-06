@@ -27,9 +27,12 @@ def addcss(value, arg):
 def total_sum(prod_list, prop_name):
    return sum(getattr(item, prop_name) for item in prod_list)
 
+def get_options(options_list, order_id):
+    return list(filter(lambda itm: itm['orderId'] == order_id, options_list))[0]['options']
+
 register.filter('my_range', my_range)
 register.filter('tag_name', tag_name)
 register.filter('find_href_src', find_href_src)
 register.filter('addcss', addcss)
 register.filter('total_sum', total_sum)
-
+register.filter('get_options', get_options)
