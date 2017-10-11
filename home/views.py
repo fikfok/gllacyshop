@@ -55,12 +55,11 @@ class CompleteOrder(TemplateView):
                 new_order.save()
                 for item in order_list:
                     prod_price = Product.objects.values('price').get(pk=item['key'])['price']
-                    print(prod_price)
                     new_item = OrderItem(order_id=new_order.id,
                                          product_id=item['key'],
                                          count=float(item['value']['count']),
                                          price=float(prod_price),
-                                         total_price=float(item['value']['count']*prod_price))
+                                         total_price=float(item['value']['count'])*prod_price)
                     new_item.save()
                 return JsonResponse({'status': 'OK'})
             return JsonResponse({'status': 'WRONG_ORDER'})
