@@ -66,7 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.processors.add_categories',
+                'home.processors.category_list',
             ],
             'libraries': {
                 'custom_tags': 'product.templatetags.my_tags',

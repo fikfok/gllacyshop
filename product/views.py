@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from .forms import ProductEditForm
 
 ITEMS_IN_PAGES = 3
-
+CATALOG_ITEMS_IN_PAGES = 8
 
 def get_page_num(pk):
     current_prod_rank = Product.objects.filter(pk__lte=int(pk)).count()
@@ -90,3 +90,34 @@ class ProductsDeleteView(DeleteView):
     def dispatch(self, request, *args, **kwargs):
         return super(DeleteView, self).dispatch(request, *args, **kwargs)
 
+class CatalogListView(ListView):
+    model = Product
+    template_name = 'catalog.html'
+    paginate_by = CATALOG_ITEMS_IN_PAGES
+
+    def get_context_data(self, **kwargs):
+        context = super(CatalogListView, self).get_context_data(**kwargs)
+        context['media_url'] = MEDIA_URL
+        context['current_site'] = 'catalog'
+        return context
+
+    def get_queryset(self):
+        if self.kwargs['category_name'] == 'Новинки':
+            return Product.objects.filter(is_new=True).order_by('pk')
+        else:
+            return Product.objects.filter(category_id__name=self.kwargs['category_name']).order_by('pk')
+
+    def dispatch(self, *args, **kwargs):
+        prod_list = Product.objects.all().order_by('pk')
+        paginator = Paginator(prod_list, self.paginate_by)
+
+        page = self.request.GET.get('page', 1)
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            self.kwargs['page'] = 1
+            return redirect('catalog')
+        except EmptyPage:
+            self.kwargs['page'] = 1
+            return redirect('catalog')
+        return super(ListView, self).dispatch(*args, **kwargs)

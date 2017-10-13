@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% load my_tags %}
+
+{% block content %}
+    <main class="main-container">
+
+        <div class="center-container">
+
+            <div class="main-container-header clearfix">
+                <div class="working-time-phone">
+                    <p class="working-time">
+                        С 10 до 20, ежедневно
+                    </p>
+                    <p class="phone">
+                        8 812 450-25-25
+                    </p>
+                </div>
+
+                <div class="breadcrumbs">
+                    <ul class="breadcrumbs-links">
+                        <li><a class="breadcumbs-links-item" href="index.html">Главная</a></li>
+                        <li><a class="breadcumbs-links-item" href="catalog.html">Каталог</a></li>
+                        <li><span class="breadcumbs-links-item">Сливочное</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <h1 class="current-item-title">Сливочное мороженое</h1>
+
+            <section class="filters">
+                <form action="#" method="get">
+
+                    <div class="filter-item-container">
+                        <p class="filter-item-caption-order"><label for="filter-order">Сортировка</label></p>
+                        <div class="filter-item-control filter-item-control-order-conteiner">
+                            <select class="filter-item-control-order" id="filter-order">
+                                <option>по популярности</option>
+                                <option>сначала недорогие</option>
+                                <option>сначала дорогие</option>
+                                <option>по жирности</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-item-container">
+                        <p class="filter-item-caption-price">Цена: 100 руб. - 500 руб.</p>
+                        <div class="filter-item-control filter-item-control-price-range">
+                            <div class="filter-item-control-gray-line"></div>
+                            <div class="filter-item-control-light-line"></div>
+                            <button class="first-range-button"></button>
+                            <button class="second-range-button"></button>
+                        </div>
+                    </div>
+
+                    <fieldset class="filter-item-container">
+                        <legend class="filter-item-caption-fat">Жирность</legend>
+                        <div class="filter-item-container-fat">
+                            <input class="rdbt-fat" type="radio" id="fat-rdbt-1" name="fat" value="0">
+                            <input class="rdbt-fat" type="radio" id="fat-rdbt-2" name="fat" value="10" checked>
+                            <input class="rdbt-fat" type="radio" id="fat-rdbt-3" name="fat" value="30">
+                            <input class="rdbt-fat" type="radio" id="fat-rdbt-4" name="fat" value="more 30">
+
+                            <label class="rdbt-filter-labels" for="fat-rdbt-1">0%</label>
+                            <label class="rdbt-filter-labels" for="fat-rdbt-2">до 10%</label>
+                            <label class="rdbt-filter-labels" for="fat-rdbt-3">до 30%</label>
+                            <label class="rdbt-filter-labels" for="fat-rdbt-4">выше 30%</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="filter-item-container">
+                        <legend class="filter-item-caption-fillers">Наполнители</legend>
+                        <div class="filter-item-container-fillers">
+                            <input class="chck-fillers" type="checkbox" id="fillers-chck-1" name="шоколадные" checked>
+                            <input class="chck-fillers" type="checkbox" id="fillers-chck-2" name="сахарные присыпки" checked>
+                            <input class="chck-fillers" type="checkbox" id="fillers-chck-3" name="фрукты">
+                            <input class="chck-fillers" type="checkbox" id="fillers-chck-4" name="сиропы">
+                            <input class="chck-fillers" type="checkbox" id="fillers-chck-5" name="джемы">
+
+                            <label class="chck-filter-labels" for="fillers-chck-1"><span class="checkmark"></span>шоколадные</label>
+                            <label class="chck-filter-labels" for="fillers-chck-2"><span class="checkmark"></span>сахарные присыпки</label>
+                            <label class="chck-filter-labels" for="fillers-chck-3"><span class="checkmark"></span>фрукты</label>
+                            <label class="chck-filter-labels" for="fillers-chck-4"><span class="checkmark"></span>сиропы</label>
+                            <label class="chck-filter-labels" for="fillers-chck-5"><span class="checkmark"></span>джемы</label>
+                        </div>
+                    </fieldset>
+
+                    <button class="rounded-btn apply-filter" type="submit" name="apply-filter-btn">Применить</button>
+                </form>
+            </section>
+
+            <section class="catalog clearfix">
+            {% include 'inc_product_grid.html' %}
+            </section>
+
+{#            </section>#}
+{#            <div class="paginator clearfix">#}
+{#                <ul class="paginator-links">#}
+{#                    <li><a class="paginator-btn-arrow left-arrow arrow-disabled"></a></li>#}
+{#                    <li><a class="paginator-btn paginator-btn-active">1</a></li>#}
+{#                    <li><a class="paginator-btn" href="#">2</a></li>#}
+{#                    <li><a class="paginator-btn" href="#">3</a></li>#}
+{#                    <li><a class="paginator-btn" href="#">4</a></li>#}
+{#                    <li><a class="paginator-btn" href="#">5</a></li>#}
+{#                    <li><a class="paginator-btn-arrow right-arrow" href="#"></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+        </div>
+    </main>
+{% endblock %}

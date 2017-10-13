@@ -1,0 +1,11 @@
+{% for item in object_list %}
+    {% if current_site == "home"%}
+        {% with article_class='hit-item' item_photo='hit-item-photo' item_image='item-image' item_price='hit-price' item_price_value='hit-price-value' item_currency='hit-price-currency' item_price_for='hit-price-for' item_link_container='hit-item-link-container' item_link='hit-item-link' %}
+            {% include 'inc_single_item.html' %}
+        {% endwith %}
+    {% elif current_site == "catalog"%}
+        {% with article_class='catalog-item' item_image='catalog-item-photo' item_price='catalog-item-price' item_price_value='catalog-item-price-value' item_currency='catalog-item-price-currency' item_price_for='catalog-item-price-for' item_link_container='catalog-item-link-container' item_link='catalog-item-link' %}
+            {% include 'inc_single_item.html' %}
+        {% endwith %}
+    {% endif %}
+{% endfor %}
